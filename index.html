@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProductPlan Market Intelligence Hub</title>
+<style>
+  :root {
+    --late-sky: #3F043E;
+    --friendly-purple: #6B1A69;
+    --hibiscus: #9B2169;
+    --sherbet: #FF776F;
+    --asphalt: #1E1E1E;
+    --blue: #0F0960;
+    --light-gray: #EFEDEF;
+    --white: #FFFFFF;
+    --gradient: linear-gradient(90deg, #3F043E, #6B1A69, #9B2169, #FF776F);
+    --gradient-135: linear-gradient(135deg, #3F043E, #6B1A69, #9B2169, #FF776F);
+    --must-act: #C0392B;
+    --important: #E67E22;
+    --useful: #27AE60;
+    --card-border: #DDD8DC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--light-gray);
+    color: var(--asphalt);
+    min-height: 100vh;
+  }
+
+  /* ── GRADIENT STRIP ── */
+  .gradient-strip {
+    height: 5px;
+    background: var(--gradient);
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--asphalt);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 42px;
+    height: 42px;
+    background: var(--gradient-135);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .header-subtitle {
+    color: #9B8FA0;
+    font-size: 12px;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 12px;
+    color: #9B8FA0;
+    line-height: 1.7;
+  }
+
+  .header-meta strong {
+    color: var(--sherbet);
+    font-weight: 600;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--late-sky);
+    padding: 12px 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--sherbet);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.3;
+    max-width: 80px;
+  }
+
+  /* ── TABS ── */
+  .tabs-container {
+    background: var(--friendly-purple);
+    padding: 0 32px;
+    overflow-x: auto;
+    display: flex;
+    gap: 2px;
+  }
+
+  .tab-btn {
+    padding: 13px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tab-btn:hover { color: rgba(255,255,255,0.9); }
+
+  .tab-btn.active {
+    color: #fff;
+    border-bottom-color: var(--sherbet);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 32px 60px;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    margin-top: 32px;
+  }
+
+  .section-header:first-child { margin-top: 0; }
+
+  .section-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--late-sky);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .section-header .line {
+    flex: 1;
+    height: 1px;
+    background: var(--card-border);
+  }
+
+  /* ── SIGNAL BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-must { background: #FDECEA; color: var(--must-act); border: 1px solid #F5C6C3; }
+  .badge-important { background: #FEF3E2; color: var(--important); border: 1px solid #FADDAE; }
+  .badge-useful { background: #E9F7EF; color: var(--useful); border: 1px solid #A9DFBF; }
+  .badge-competitive { background: #EAF0FB; color: #1A5276; border: 1px solid #AEC6EF; }
+  .badge-ai { background: #F3E8FF; color: #6B21A8; border: 1px solid #D8B4FE; }
+  .badge-trend { background: #FFF8E1; color: #B7770D; border: 1px solid #FFD97D; }
+
+  /* ── STAR RATING ── */
+  .stars { color: var(--sherbet); font-size: 13px; letter-spacing: 1px; }
+  .stars .empty { color: #DDD8DC; }
+
+  /* ── ARTICLE CARDS ── */
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+
+  .article-card:hover { box-shadow: 0 4px 16px rgba(63,4,62,0.1); }
+
+  .article-header {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .article-meta-col { flex: 1; min-width: 0; }
+
+  .article-top-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .article-source {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--friendly-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-date {
+    font-size: 11px;
+    color: #999;
+  }
+
+  .article-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--asphalt);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .article-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .article-title a:hover { color: var(--hibiscus); }
+
+  .article-summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .article-rating-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .expand-btn {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: var(--hibiscus);
+    cursor: pointer;
+    font-weight: 600;
+    padding: 4px 0;
+    white-space: nowrap;
+  }
+
+  .article-details {
+    display: none;
+    border-top: 1px solid var(--light-gray);
+    padding: 16px 20px;
+    background: #FAFAFA;
+  }
+
+  .article-details.open { display: block; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }
+
+  .detail-block h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--hibiscus);
+    margin-bottom: 6px;
+  }
+
+  .detail-block p, .detail-block ul {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .detail-block ul { padding-left: 16px; }
+  .detail-block li { margin-bottom: 3px; }
+
+  .keyword-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+  .keyword-tag {
+    background: #F3E8FF;
+    color: #6B21A8;
+    border: 1px solid #D8B4FE;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  /* ── OVERVIEW GRID ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 700px) { .overview-grid { grid-template-columns: 1fr; } }
+
+  .overview-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .overview-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--late-sky);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .signal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .signal-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .signal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .dot-must { background: var(--must-act); }
+  .dot-important { background: var(--important); }
+  .dot-useful { background: var(--useful); }
+
+  .signal-text { font-size: 13px; color: #444; line-height: 1.5; }
+  .signal-text strong { color: var(--asphalt); font-weight: 600; }
+
+  /* ── CONTENT IDEAS ── */
+  .content-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .content-tab-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    background: var(--white);
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .content-tab-btn.active {
+    background: var(--gradient);
+    color: white;
+    border-color: transparent;
+  }
+
+  .content-tab-panel { display: none; }
+  .content-tab-panel.active { display: block; }
+
+  .idea-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+
+  .idea-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--asphalt);
+    margin-bottom: 6px;
+  }
+
+  .idea-meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .idea-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .idea-card p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .idea-angle {
+    background: #F9F6FF;
+    border-left: 3px solid var(--friendly-purple);
+    padding: 8px 12px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--friendly-purple);
+    font-style: italic;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── BATTLECARDS ── */
+  .battlecard {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .battlecard-header {
+    background: var(--asphalt);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .battlecard-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .battlecard-header .threat-level {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .threat-high { background: #FDECEA; color: var(--must-act); }
+  .threat-med { background: #FEF3E2; color: var(--important); }
+
+  .battlecard-body { display: none; padding: 0; }
+  .battlecard-body.open { display: block; }
+
+  .bc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 700px) { .bc-grid { grid-template-columns: 1fr; } }
+
+  .bc-col {
+    padding: 16px 18px;
+    border-right: 1px solid var(--light-gray);
+  }
+
+  .bc-col:last-child { border-right: none; }
+
+  .bc-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+
+  .bc-their h4 { color: var(--must-act); }
+  .bc-ours h4 { color: var(--useful); }
+  .bc-talk h4 { color: var(--friendly-purple); }
+
+  .bc-col ul { padding-left: 16px; font-size: 13px; color: #444; line-height: 1.7; }
+
+  .bc-talk-track {
+    background: #F9F6FF;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── COMPANY HUB ── */
+  .hub-section { margin-bottom: 28px; }
+
+  .placeholder-post {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  .placeholder-post .ph-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ph-avatar {
+    width: 38px;
+    height: 38px;
+    background: var(--gradient-135);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .ph-name { font-weight: 700; font-size: 14px; color: var(--asphalt); }
+  .ph-handle { font-size: 12px; color: #888; }
+  .ph-content { font-size: 13px; color: #444; line-height: 1.6; }
+
+  .auto-note {
+    background: #FFF8E1;
+    border: 1px solid #FFD97D;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #7D5A0A;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .influencer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .influencer-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .influencer-card .inf-avatar {
+    width: 46px;
+    height: 46px;
+    background: var(--gradient-135);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 auto 10px;
+  }
+
+  .influencer-card .inf-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--asphalt);
+    margin-bottom: 3px;
+  }
+
+  .influencer-card .inf-handle {
+    font-size: 11px;
+    color: var(--hibiscus);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .influencer-card .inf-desc {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── THOUGHT LEADER TAB ── */
+  .prompt-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .prompt-card-header {
+    background: var(--gradient);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prompt-card-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prompt-card-body { padding: 20px; }
+
+  .prompt-instructions {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .prompt-box {
+    background: #1E1E1E;
+    color: #E8E3EC;
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 13px;
+    line-height: 1.7;
+    font-family: 'Monaco', 'Menlo', monospace;
+    white-space: pre-wrap;
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .copy-btn:hover { background: rgba(255,255,255,0.25); }
+
+  .prompt-tips {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .prompt-tips strong { color: var(--hibiscus); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--asphalt);
+    padding: 18px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: #9B8FA0;
+  }
+
+  footer strong { color: var(--sherbet); }
+
+  /* ── UTILITY ── */
+  .full-width { grid-column: 1 / -1; }
+
+  .exec-highlight {
+    background: var(--gradient);
+    border-radius: 10px;
+    padding: 20px 24px;
+    color: white;
+    margin-bottom: 24px;
+  }
+
+  .exec-highlight h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+
+  .exec-highlight p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.95;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .next-actions {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .next-actions h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--late-sky);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 14px;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  .action-item:last-child { border-bottom: none; }
+
+  .action-num {
+    background: var(--gradient-135);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── COMPACT COMPETITOR CARDS ── */
+  .compact-competitor {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .cc-header {
+    background: #2A2A2A;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .cc-header:hover { background: #333; }
+
+  .cc-name { font-size: 14px; font-weight: 700; color: white; }
+  .cc-url { font-size: 11px; color: #999; flex: 1; }
+
+  .cc-body { display: none; }
+  .cc-body.open { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+
+  @media (max-width: 700px) { .cc-body.open { grid-template-columns: 1fr; } }
+
+  .cc-col {
+    padding: 14px 18px;
+    border-right: 1px solid var(--light-gray);
+  }
+
+  .cc-col:last-child { border-right: none; }
+
+  .cc-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .cc-their h4 { color: var(--must-act); }
+  .cc-ours h4 { color: var(--useful); }
+  .cc-col p { font-size: 13px; color: #444; line-height: 1.6; }
+
+  .cc-toggle { color: #888; font-size: 16px; transition: transform 0.15s; }
+  .cc-toggle.open { transform: rotate(180deg); }
+
+  /* ── TIERED SECTION LABELS ── */
+  .tier-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #888;
+    padding: 14px 0 8px;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── ECOSYSTEM GRID ── */
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .eco-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .eco-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .eco-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--asphalt);
+  }
+
+  .eco-url {
+    font-size: 11px;
+    color: var(--hibiscus);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .eco-url:hover { text-decoration: underline; }
+
+  .eco-card p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .eco-rel {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--friendly-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="gradient-strip"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <div class="logo-mark">PP</div>
+    <div>
+      <div class="header-title">ProductPlan Market Intelligence Hub</div>
+      <div class="header-subtitle">AI-powered weekly research · Product Intelligence Platform</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div>Automated research · Generated <strong>May 12, 2026</strong></div>
+    <div>Coverage: Last 7 days · Sources: 15+ publications</div>
+    <div>Next run: <strong>May 18, 2026</strong></div>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">11</div>
+    <div class="stat-label">Articles Curated</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">12</div>
+    <div class="stat-label">Competitors Tracked</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">9</div>
+    <div class="stat-label">Content Ideas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Must-Act Signals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">6</div>
+    <div class="stat-label">Top Influencers</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-container">
+  <button class="tab-btn active" data-tab="overview">🧭 Overview</button>
+  <button class="tab-btn" data-tab="marketing">📣 Marketing</button>
+  <button class="tab-btn" data-tab="sales">⚔️ Sales</button>
+  <button class="tab-btn" data-tab="executive">📊 Executive</button>
+  <button class="tab-btn" data-tab="company">🏢 Company Hub</button>
+  <button class="tab-btn" data-tab="articles">📰 All Articles</button>
+  <button class="tab-btn" data-tab="thought-leader">✍️ Thought Leader</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- ═══════════════ OVERVIEW TAB ═══════════════ -->
+  <div class="tab-panel active" id="tab-overview">
+
+    <div class="exec-highlight">
+      <h3>This Week's Executive Summary</h3>
+      <p>AI-native product management is rapidly becoming table stakes — Atlassian, Monday.com, and Productboard all made AI capability announcements this week. ProductPlan's Product Intelligence Platform positioning, powered by the Winware.ai acquisition, is directly aligned with the #1 trend in the market. The window to establish category leadership is now. Three competitor moves require immediate attention, and nine content opportunities are ready to activate.</p>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <h3>🚨 Must-Act Signals</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>Monday.com launches AI Work OS for product teams.</strong> Direct competitive play into ProductPlan's ICP. Sales needs counter-messaging now.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>Atlassian Intelligence receives major roadmap update.</strong> Jira's AI features now include automated backlog prioritization — your biggest competitor is getting smarter.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>"AI Product Manager" role is surging on LinkedIn.</strong> ICP buyers are adopting AI tooling at accelerating pace — ProductPlan must be in that conversation.</div>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <h3>📈 Top Trends This Week</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>Continuous discovery becomes default expectation.</strong> Product teams demand real-time customer intelligence, not quarterly research cycles.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>Cross-functional alignment is the #1 PM pain point.</strong> Multiple publications cite roadmap communication as the leading source of team friction.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Voice of Customer automation accelerates.</strong> AI synthesis of Gong, Intercom, and survey data is moving from "nice to have" to core PM workflow.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Product-led growth firms increasingly need roadmap intelligence.</strong> Emerging opportunity in PLG segment where data-driven prioritization is critical.</div>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <h3>🎯 Top Content Opportunities</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>LinkedIn post:</strong> "Why AI product management isn't about replacing PMs — it's about giving them superpowers"</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>Blog/SEO:</strong> "Product Intelligence Platform vs. Product Roadmap Tool: What's the Difference?"</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>Webinar:</strong> "From Customer Signal to Shipped Feature: A New AI-Powered Workflow for Product Teams"</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Blog:</strong> "5 Signs Your Product Roadmap Is Driven by Opinions, Not Evidence"</div>
+        </div>
+      </div>
+
+      <div class="next-actions">
+        <h3>✅ Recommended Next Actions</h3>
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div>Brief sales team on Monday.com AI Work OS announcement — update battlecard talking points this week</div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div>Draft LinkedIn thought leadership post on "AI-powered continuous discovery" — high engagement topic, zero ProductPlan content on it yet</div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div>Commission "Product Intelligence Platform" category explainer blog post — own the definition before competitors do</div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">4</div>
+          <div>Plan webinar on customer signal-to-roadmap workflow — directly showcases Winware.ai capabilities</div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">5</div>
+          <div>Monitor r/ProductManagement this week — "AI roadmapping tools" thread gaining traction, competitor mentions present</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ MARKETING TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-marketing">
+
+    <div class="section-header">
+      <h2>Content Ideas This Week</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="content-tabs">
+      <button class="content-tab-btn active" data-content-tab="linkedin-ideas">⚡ Quick-Hit LinkedIn</button>
+      <button class="content-tab-btn" data-content-tab="blog-ideas">✍️ Blog &amp; SEO</button>
+      <button class="content-tab-btn" data-content-tab="tl-ideas">🎤 Thought Leadership</button>
+    </div>
+
+    <div class="content-tab-panel active" id="content-tab-linkedin-ideas">
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-must">Must Act</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <h4>"AI won't replace product managers. But product managers who use AI will replace those who don't."</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Director+ PMs, CPOs</span>
+          <span>📅 Timing: This week — peak conversation</span>
+        </div>
+        <p>This framing is driving massive engagement on LinkedIn right now. Take a strong stance: AI tools like ProductPlan are additive, not disruptive. Share a specific example of how AI synthesis turns 200 Gong calls into 3 actionable priorities in minutes.</p>
+        <div class="idea-angle">Angle: Start with the "replacement anxiety" hook, pivot to empowerment, close with a concrete workflow example from the ProductPlan platform.</div>
+      </div>
+
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-important">Important</span>
+          <span class="badge badge-trend">Trend</span>
+        </div>
+        <h4>"Your roadmap is lying to you (and you know it)"</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: PMs tired of opinion-driven backlogs</span>
+          <span>📅 Timing: Evergreen — strong ICP pain point</span>
+        </div>
+        <p>Lean into the ICP pain point around disjointed, gut-feeling roadmaps. Challenge PMs to audit how many of their last 10 decisions were backed by actual customer data vs. internal stakeholder pressure.</p>
+        <div class="idea-angle">Angle: Provocative question hook → 3 symptoms of an opinion-driven roadmap → CTA to ProductPlan's prioritization framework or a free resource.</div>
+      </div>
+
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-useful">Useful Signal</span>
+        </div>
+        <h4>Behind-the-scenes: How ProductPlan's own product team uses the platform</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Prospective buyers, curious evaluators</span>
+          <span>📅 Timing: Ongoing — builds authenticity</span>
+        </div>
+        <p>Show, don't tell. A short LinkedIn post walking through a real Monday morning workflow — how the ProductPlan team surfaces customer signals from the past week and adjusts priorities — would be extremely authentic and shareable.</p>
+        <div class="idea-angle">Angle: "We build what we sell. Here's Monday morning at ProductPlan..." — screen walkthrough or screenshot narrative.</div>
+      </div>
+    </div>
+
+    <div class="content-tab-panel" id="content-tab-blog-ideas">
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-must">Must Act</span>
+          <span class="badge badge-ai">SEO Opportunity</span>
+        </div>
+        <h4>Product Intelligence Platform vs. Product Roadmap Software: What's the Difference and Why It Matters</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Buyers in evaluation mode</span>
+          <span>📅 Format: 1,500-word explainer blog</span>
+        </div>
+        <p>No competitor owns this keyword yet. This is ProductPlan's rebrand narrative served as SEO content. Define the category, explain the evolution from roadmap tools to intelligence platforms, and position ProductPlan as the clear leader. Will capture comparison-stage search traffic.</p>
+        <div class="idea-angle">Target keywords: "product intelligence platform," "AI product management software," "product roadmap vs product intelligence"</div>
+      </div>
+
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-important">Important</span>
+        </div>
+        <h4>5 Signs Your Product Roadmap Is Driven by Opinions, Not Evidence</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Mid-funnel PMs evaluating tools</span>
+          <span>📅 Format: Listicle/checklist blog</span>
+        </div>
+        <p>Directly addresses the ICP pain point around disjointed prioritization. Symptom-based content performs well for product audiences. Each "sign" should connect to how evidence-based tooling (ProductPlan) solves it. Highly shareable and linkable.</p>
+        <div class="idea-angle">Angle: Self-diagnostic tone. CTA = "Take our roadmap health assessment" or link to demo.</div>
+      </div>
+
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-useful">Useful Signal</span>
+          <span class="badge badge-trend">Evergreen</span>
+        </div>
+        <h4>How to Build a Continuous Discovery Practice at Scale with AI</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Director+ PMs, product ops teams</span>
+          <span>📅 Format: How-to guide / 1,800 words</span>
+        </div>
+        <p>Teresa Torres' continuous discovery framework is a dominant mental model in the product community. This post connects that methodology to AI tooling — positioning ProductPlan as the enabler of continuous discovery at scale. Will resonate with the @ttorres influencer community.</p>
+        <div class="idea-angle">Angle: Framework-first → tool-enablement. Feature the Winware.ai synthesis capabilities as the "how."</div>
+      </div>
+    </div>
+
+    <div class="content-tab-panel" id="content-tab-tl-ideas">
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-must">Must Act</span>
+          <span class="badge badge-ai">Webinar</span>
+        </div>
+        <h4>Webinar: From Customer Signal to Shipped Feature — A Live Demo of AI-Powered Product Intelligence</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Director+ PMs, CPOs, Product Ops</span>
+          <span>📅 Format: 45-min live webinar + Q&amp;A</span>
+        </div>
+        <p>ProductPlan's webinar series is launching — this topic is a natural first: a live, end-to-end workflow demo showing how AI synthesizes customer conversations, surfaces patterns, and feeds directly into roadmap prioritization. High intent audience, perfect for pipeline generation.</p>
+        <div class="idea-angle">Structure: 10 min market context → 25 min live platform walkthrough → 10 min Q&amp;A. Invite a customer to co-present for credibility.</div>
+      </div>
+
+      <div class="idea-card">
+        <div class="article-top-row">
+          <span class="badge badge-important">Important</span>
+        </div>
+        <h4>Report: The State of Product Intelligence 2026 — How Leading Teams Are Turning Customer Data Into Strategy</h4>
+        <div class="idea-meta">
+          <span>🎯 Audience: Executive buyers, press, analysts</span>
+          <span>📅 Format: Research report / gated asset</span>
+        </div>
+        <p>A first-party research report establishes ProductPlan as the authoritative voice on the category they're trying to define. Survey 200+ product leaders on their current tooling, AI adoption, and roadmap challenges. Use findings to fuel 6 months of content and PR coverage.</p>
+        <div class="idea-angle">Repurpose into: press release, 6 LinkedIn posts, 2 blogs, 1 webinar, sales battlecard stats.</div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px;">
+      <h2>Keywords &amp; Topics to Monitor</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="overview-card">
+      <div class="keyword-tags" style="margin-top: 0;">
+        <span class="keyword-tag">#ProductIntelligence</span>
+        <span class="keyword-tag">#AIProductManagement</span>
+        <span class="keyword-tag">#ProductRoadmap</span>
+        <span class="keyword-tag">#ContinuousDiscovery</span>
+        <span class="keyword-tag">#ProductLedGrowth</span>
+        <span class="keyword-tag">#VoiceOfCustomer</span>
+        <span class="keyword-tag">#ProductStrategy</span>
+        <span class="keyword-tag">#ProductPrioritization</span>
+        <span class="keyword-tag">#ProductOps</span>
+        <span class="keyword-tag">product intelligence platform</span>
+        <span class="keyword-tag">AI product management software</span>
+        <span class="keyword-tag">product roadmapping software</span>
+        <span class="keyword-tag">customer feedback synthesis AI</span>
+        <span class="keyword-tag">product led development</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ SALES TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-sales">
+
+    <div class="section-header">
+      <h2>Competitive Battlecards</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="tier-label">🚨 Tier 1 — Primary Competitive Threats</div>
+
+    <!-- Monday Battlecard -->
+    <div class="battlecard">
+      <div class="battlecard-header" onclick="toggleBattlecard(this)">
+        <h3>⚔️ Monday.com <span style="font-size:12px; opacity:0.6; font-weight:400; margin-left:6px;">Work OS → Product Management Play</span></h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge threat-high threat-level">🚨 HIGH THREAT</span>
+          <span style="color:#999; font-size:18px;">▾</span>
+        </div>
+      </div>
+      <div class="battlecard-body">
+        <div class="bc-grid">
+          <div class="bc-col bc-their">
+            <h4>Their Move This Week</h4>
+            <ul>
+              <li>Launched "AI Work OS for Product Teams" — targets ProductPlan's direct ICP</li>
+              <li>Bundling roadmapping into existing Work OS — selling on consolidation</li>
+              <li>Emphasizing ease-of-use and cross-team collaboration as primary differentiators</li>
+              <li>Pricing pitch: "Why pay for a separate tool when Monday does it all?"</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-ours">
+            <h4>Our Advantage</h4>
+            <ul>
+              <li>ProductPlan is purpose-built for product intelligence — not a workflow tool with roadmap bolted on</li>
+              <li>AI synthesis of customer conversations (Gong, CRM, surveys) is unique — Monday has no equivalent</li>
+              <li>Deep product-specific workflows: continuous discovery, evidence-based prioritization, OKR alignment</li>
+              <li>Integrates WITH Monday — not a replacement for it</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-talk">
+            <h4>Winning Talk Track</h4>
+            <div class="bc-talk-track">"Monday is great for tracking work — but product intelligence is different from project management. ProductPlan doesn't just show you what your team is building, it tells you what you should build next based on real customer signals. Ask your champion: 'How does Monday help you synthesize 200 customer conversations into your next roadmap priority?' That's where we win."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atlassian Battlecard -->
+    <div class="battlecard">
+      <div class="battlecard-header" onclick="toggleBattlecard(this)">
+        <h3>⚔️ Atlassian / Jira <span style="font-size:12px; opacity:0.6; font-weight:400; margin-left:6px;">Atlassian Intelligence Roadmap Update</span></h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge threat-high threat-level">🚨 HIGH THREAT</span>
+          <span style="color:#999; font-size:18px;">▾</span>
+        </div>
+      </div>
+      <div class="battlecard-body">
+        <div class="bc-grid">
+          <div class="bc-col bc-their">
+            <h4>Their Move This Week</h4>
+            <ul>
+              <li>Atlassian Intelligence now includes AI-powered backlog prioritization suggestions</li>
+              <li>Roadmap feature in Jira getting AI summaries and auto-generated status updates</li>
+              <li>Positioning: "AI-powered planning built into the tools your engineers already use"</li>
+              <li>Leveraging massive installed base to upsell intelligence features</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-ours">
+            <h4>Our Advantage</h4>
+            <ul>
+              <li>ProductPlan is built for product leaders, not engineering execution — different buyer, different value prop</li>
+              <li>External customer intelligence (Gong, surveys, market signals) is ProductPlan's moat — Atlassian's AI only knows what's in Jira</li>
+              <li>Exec-ready portfolio views and OKR alignment are table stakes for ProductPlan, absent from Jira</li>
+              <li>Jira integration is a strength — ProductPlan + Jira is the power combo</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-talk">
+            <h4>Winning Talk Track</h4>
+            <div class="bc-talk-track">"Jira is where engineers live. ProductPlan is where product strategy lives. Atlassian Intelligence tells you how to run sprints more efficiently — ProductPlan tells you which sprints to run in the first place, based on what your customers actually need. Our customers use both. The question is: does your product leadership team have a tool built for their workflows, or are they trying to run strategy in a ticketing system?"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productboard Battlecard -->
+    <div class="battlecard">
+      <div class="battlecard-header" onclick="toggleBattlecard(this)">
+        <h3>⚔️ Productboard <span style="font-size:12px; opacity:0.6; font-weight:400; margin-left:6px;">Closest Direct Competitor</span></h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge threat-med threat-level">⚠️ MONITOR</span>
+          <span style="color:#999; font-size:18px;">▾</span>
+        </div>
+      </div>
+      <div class="battlecard-body">
+        <div class="bc-grid">
+          <div class="bc-col bc-their">
+            <h4>Their Current Positioning</h4>
+            <ul>
+              <li>Emphasizing "customer-centric roadmap" as core differentiator</li>
+              <li>AI features in beta for feedback synthesis — not yet fully deployed</li>
+              <li>Targeting VP Product and above at 100-500 employee companies</li>
+              <li>Heavy content play around product-market fit and customer feedback loops</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-ours">
+            <h4>Our Advantage</h4>
+            <ul>
+              <li>ProductPlan's Winware.ai AI is production-ready — not beta</li>
+              <li>Portfolio and exec visibility layer is significantly stronger</li>
+              <li>Broader data ingestion (Gong + CRM + surveys vs. feedback widgets)</li>
+              <li>New logo momentum + brand refresh signals growth vs. Productboard's stable positioning</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-talk">
+            <h4>Winning Talk Track</h4>
+            <div class="bc-talk-track">"Productboard pioneered customer-centric roadmapping — and ProductPlan takes it further. Where Productboard captures feedback, ProductPlan synthesizes signals across your entire customer intelligence stack — sales calls, support tickets, CRM data — and surfaces the patterns your team would never have time to find manually. That's not a roadmap tool. That's a product intelligence platform."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: DIRECT ROADMAPPING COMPETITORS -->
+    <div class="tier-label">⚔️ Tier 2 — Direct Roadmapping Competitors</div>
+
+    <!-- Aha! Battlecard -->
+    <div class="battlecard">
+      <div class="battlecard-header" onclick="toggleBattlecard(this)">
+        <h3>⚔️ Aha! <span style="font-size:12px; opacity:0.6; font-weight:400; margin-left:6px;">Enterprise Product Suite</span></h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge threat-med threat-level">⚠️ MEDIUM-HIGH</span>
+          <span style="color:#999; font-size:18px;">▾</span>
+        </div>
+      </div>
+      <div class="battlecard-body">
+        <div class="bc-grid">
+          <div class="bc-col bc-their">
+            <h4>Their Positioning</h4>
+            <ul>
+              <li>Claims "world's #1 product development software" — strong brand recognition in enterprise</li>
+              <li>Full suite: Aha! Roadmaps, Ideas portal, Notebooks, Whiteboards — high feature count</li>
+              <li>Pitch: comprehensive platform vs. point solutions — "consolidate your product toolstack with us"</li>
+              <li>Strong enterprise sales motion with deep integrations (Jira, Salesforce, etc.)</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-ours">
+            <h4>Our Advantage</h4>
+            <ul>
+              <li>Aha! is feature-rich but complex — notorious for steep learning curves and low adoption rates below Director level</li>
+              <li>ProductPlan's AI intelligence layer is the differentiator Aha! doesn't have — they manage roadmaps, we synthesize why they should change</li>
+              <li>Winware.ai synthesis of Gong + CRM + surveys is architecturally unique to ProductPlan</li>
+              <li>ProductPlan deploys faster, drives higher team adoption</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-talk">
+            <h4>Winning Talk Track</h4>
+            <div class="bc-talk-track">"Aha! is the industry's most comprehensive roadmap management tool — and many teams struggle to use half of it. ProductPlan is focused on a different question: not just how to manage your roadmap, but how to build the right one in the first place. If your team is spending more time maintaining the tool than using the intelligence it provides, that's worth a conversation."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- airfocus Battlecard -->
+    <div class="battlecard">
+      <div class="battlecard-header" onclick="toggleBattlecard(this)">
+        <h3>⚔️ airfocus <span style="font-size:12px; opacity:0.6; font-weight:400; margin-left:6px;">Modular Prioritization Platform</span></h3>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge threat-med threat-level">⚠️ MEDIUM</span>
+          <span style="color:#999; font-size:18px;">▾</span>
+        </div>
+      </div>
+      <div class="battlecard-body">
+        <div class="bc-grid">
+          <div class="bc-col bc-their">
+            <h4>Their Positioning</h4>
+            <ul>
+              <li>Modular "build your own" product management platform — flexible by design</li>
+              <li>Known for weighted scoring and prioritization frameworks — targets teams obsessed with priority methodology</li>
+              <li>Strong focus on strategy-to-execution alignment and OKR connection</li>
+              <li>Positioned as more customizable than legacy tools like Aha! or ProductPlan</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-ours">
+            <h4>Our Advantage</h4>
+            <ul>
+              <li>airfocus prioritization is still based on internal scoring — ProductPlan grounds priorities in actual customer signals via AI synthesis</li>
+              <li>Weighted scoring frameworks require human input to work; ProductPlan's AI surfaces priorities from real data automatically</li>
+              <li>Portfolio and cross-product visibility is stronger in ProductPlan</li>
+              <li>Winware.ai = the data layer airfocus doesn't have</li>
+            </ul>
+          </div>
+          <div class="bc-col bc-talk">
+            <h4>Winning Talk Track</h4>
+            <div class="bc-talk-track">"airfocus gives you great frameworks for prioritizing — but those frameworks are only as good as the inputs. ProductPlan's AI synthesis means your prioritization decisions are grounded in what customers are actually saying in sales calls, surveys, and support tickets, not in how your team manually scores features. It's the difference between a smart system and a smart system with real data."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Craft.io Compact -->
+    <div class="tier-label" style="margin-top: 8px;">Direct Competitors — Quick Reference</div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Craft.io</span>
+        <span class="cc-url">craft.io</span>
+        <span class="badge badge-competitive">Direct</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>Their Angle</h4>
+          <p>Modern visual roadmapping + customer feedback integration. AI-forward positioning with a similar buyer profile (Director+ PMs at mid-market SaaS). Strong UX and collaboration features. Pitches "modern" vs. "legacy" tools.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Our Advantage</h4>
+          <p>ProductPlan's Winware.ai intelligence layer goes significantly deeper than Craft's AI features. Craft is visual and collaborative — ProductPlan is intelligent. The synthesis of Gong + CRM + surveys is unique. Also, ProductPlan has the established brand and 1,000+ customer proof points Craft is still building.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Chisel</span>
+        <span class="cc-url">chisellabs.com</span>
+        <span class="badge badge-useful">Monitor</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>Their Angle</h4>
+          <p>Newer AI-native product management tool targeting team alignment and roadmapping. Pitches a modern, AI-first experience. Smaller player with an emerging ICP overlap. Lower threat today but worth watching as AI-native tools gain traction.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Our Advantage</h4>
+          <p>ProductPlan has the scale, brand, and customer base Chisel is still building. ProductPlan's AI is production-ready and backed by a real acquisition (Winware.ai) — not a thin AI layer. Enterprise readiness and portfolio features are not in Chisel's wheelhouse yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: PROJECT/WORKFLOW CROSSOVERS -->
+    <div class="tier-label" style="margin-top: 16px;">🔀 Tier 3 — Project &amp; Workflow Crossovers</div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Hive</span>
+        <span class="cc-url">hive.com</span>
+        <span class="badge badge-important">Low-Med</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>Their Angle</h4>
+          <p>Project management platform making a play into product team workflows. Consolidation pitch similar to Monday.com: "one tool for your whole team." AI features being added to project planning. Targets teams looking to reduce their tool stack.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Our Advantage</h4>
+          <p>Same counter as Monday.com: project management is not product intelligence. Hive tracks work completion — ProductPlan informs what work should be done. Use the same "managing work vs. building the right thing" talk track. Limited threat unless deal is primarily budget-driven.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Zoho Sprints</span>
+        <span class="cc-url">zoho.com/sprints</span>
+        <span class="badge badge-useful">Low</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>Their Angle</h4>
+          <p>Part of the Zoho suite — scrum and agile sprint planning focused. Competes primarily on price within the broader Zoho ecosystem. Targets SMB and price-sensitive buyers already invested in Zoho tools. Very different ICP than ProductPlan.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Our Advantage</h4>
+          <p>Rarely a direct head-to-head. If you're seeing Zoho Sprints in a deal, re-qualify the account — it may not be the right ICP fit. If it is, lead with the AI intelligence layer and portfolio visibility, which Zoho Sprints completely lacks. Total different product category.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Wrike</span>
+        <span class="cc-url">wrike.com</span>
+        <span class="badge badge-important">Low-Med</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>Their Angle</h4>
+          <p>Work management platform (similar category to Monday.com, Asana). Has product-adjacent features including timeline views and task dependencies. Some teams use Wrike as a DIY roadmap. Strong in marketing, creative, and cross-functional teams.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Our Advantage</h4>
+          <p>Wrike is not purpose-built for product management. No customer intelligence, no AI synthesis, no OKR alignment at the portfolio level. If a prospect is using Wrike for roadmapping, they've outgrown their tool — that's a warm opening for ProductPlan's full platform story.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH & INSIGHTS TOOLS -->
+    <div class="tier-label" style="margin-top: 16px;">🔬 Research &amp; Insights Tools — Monitor &amp; Partnership Signals</div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Maze</span>
+        <span class="cc-url">maze.co</span>
+        <span class="badge badge-ai">Watch / Partner</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>What They Do</h4>
+          <p>Rapid user testing platform — prototype testing, surveys, card sorts. Strong in UX and product design teams. Fast, self-serve, widely adopted in mid-market. Competes with ProductPlan's User Research module at the lightweight testing layer.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Angle &amp; Watch Signal</h4>
+          <p>Maze captures user testing data — ProductPlan synthesizes it into strategic direction. More complementary than competitive. Watch for: does Maze build toward a roadmap or intelligence layer? If so, the overlap increases. Current opportunity: position as an integration source, not a competitor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">UserTesting</span>
+        <span class="cc-url">usertesting.com</span>
+        <span class="badge badge-ai">Watch / Partner</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>What They Do</h4>
+          <p>Established human insight platform — video user research, UX testing, sentiment analysis. Enterprise-grade, widely used by larger product and design teams. Competes at the qualitative research layer with ProductPlan's User Research module.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>Angle &amp; Watch Signal</h4>
+          <p>UserTesting generates rich qualitative data. ProductPlan's AI synthesizes that data into product strategy — they're upstream of us. A partnership or integration story could resonate: "Use UserTesting to gather; use ProductPlan to synthesize and prioritize." Watch if UserTesting starts building roadmap or intelligence features.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compact-competitor">
+      <div class="cc-header" onclick="toggleCompact(this)">
+        <span class="cc-name">Sprig</span>
+        <span class="cc-url">sprig.com</span>
+        <span class="badge badge-must">🚨 Watch Closely</span>
+        <span class="cc-toggle">▾</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-col cc-their">
+          <h4>What They Do</h4>
+          <p>AI-powered continuous user research — in-product surveys, session replays, concept testing, AI synthesis. Their AI automatically summarizes patterns from user research at scale. Growing fast with a strong AI-native positioning in the product research space.</p>
+        </div>
+        <div class="cc-col cc-ours">
+          <h4>⚠️ Why Watch Closely</h4>
+          <p>Sprig's AI synthesis of user research is directionally similar to what Winware.ai brings to ProductPlan — but focused on the research layer. If Sprig builds toward roadmap prioritization or strategy synthesis, the overlap becomes significant. Monitor their product announcements quarterly. Also consider: can ProductPlan ingest Sprig data as an intelligence signal?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECOSYSTEM SECTION -->
+    <div class="section-header" style="margin-top: 32px;">
+      <h2>Ecosystem &amp; Related Companies</h2>
+      <div class="line"></div>
+    </div>
+    <p style="font-size: 13px; color: #666; margin-bottom: 16px; line-height: 1.6;">Adjacent companies that interact with ProductPlan's space — potential integration partners, signal sources, or companies to monitor for category expansion.</p>
+
+    <div class="ecosystem-grid">
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Fullstory</span>
+          <a href="https://fullstory.com" target="_blank" class="eco-url">fullstory.com</a>
+        </div>
+        <p>Digital experience intelligence — session replay, user behavior analytics, funnel analysis. Generates rich behavioral signals about how users interact with products.</p>
+        <span class="eco-rel">🔗 Signal Source / Integration</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Pendo</span>
+          <a href="https://pendo.io" target="_blank" class="eco-url">pendo.io</a>
+        </div>
+        <p>Product analytics + in-app guidance + user sentiment (NPS, surveys). Strong in product-led growth companies. Has minor roadmapping features — mostly complementary to ProductPlan.</p>
+        <span class="eco-rel">🔗 Integration / Minor Overlap</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Dovetail</span>
+          <a href="https://dovetail.com" target="_blank" class="eco-url">dovetail.com</a>
+        </div>
+        <p>AI-powered research repository — organizes and synthesizes qualitative research, interviews, and survey data. Very similar to the Winware.ai research synthesis capability within ProductPlan.</p>
+        <span class="eco-rel">⚡ Watch / Research Module Overlap</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Airtable</span>
+          <a href="https://airtable.com" target="_blank" class="eco-url">airtable.com</a>
+        </div>
+        <p>Flexible database/workflow tool widely used as DIY roadmapping. Many product teams build their own roadmaps in Airtable — a common "good enough" substitute that ProductPlan displaces.</p>
+        <span class="eco-rel">🔄 Displacement Opportunity</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Base44</span>
+          <a href="https://base44.com" target="_blank" class="eco-url">base44.com</a>
+        </div>
+        <p>AI app builder platform enabling rapid internal tool creation. Adjacent to product teams building lightweight internal tooling. Monitor for how AI-native builders change what product teams build vs. buy.</p>
+        <span class="eco-rel">📡 Adjacent / Monitor</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Lovable</span>
+          <a href="https://lovable.dev" target="_blank" class="eco-url">lovable.dev</a>
+        </div>
+        <p>AI-powered app development platform — turns prompts into working applications. Represents a broader shift in how products are built, compressing the product-engineering cycle. Monitor for ICP behavior shifts.</p>
+        <span class="eco-rel">📡 Adjacent / Monitor</span>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-top">
+          <span class="eco-name">Replit</span>
+          <a href="https://replit.com" target="_blank" class="eco-url">replit.com</a>
+        </div>
+        <p>AI-powered coding and development environment. As AI dev tools accelerate shipping velocity, product intelligence becomes more critical — PMs need better signal synthesis to keep pace with faster build cycles.</p>
+        <span class="eco-rel">📡 Adjacent / Tailwind Signal</span>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px;">
+      <h2>Market Signals for Sales</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <h3>🔥 Objection Ammo This Week</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>"We already use Jira for roadmapping"</strong> — Atlassian's own AI update shows the limits of engineering-first tools for product strategy.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>"We're evaluating Monday for this"</strong> — Monday's new product features just shipped; they're 18 months behind on product-specific intelligence.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>"We don't have budget for another tool"</strong> — frame as replacing the manual analyst work of synthesizing customer feedback, not adding a tool.</div>
+        </div>
+      </div>
+      <div class="overview-card">
+        <h3>💡 Buying Trigger News</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>Companies hiring "AI Product Manager"</strong> are a hot prospect signal — they're already buying into AI-native product workflows.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>Q2 planning season</strong> is underway — roadmap review cycles are a high-intent trigger. Target companies in post-planning assessment mode.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Series B/C SaaS companies</strong> scaling product teams are showing up repeatedly in product management content — align outreach to this cohort.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ EXECUTIVE TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-executive">
+
+    <div class="exec-highlight">
+      <h3>Executive Briefing — Week of May 12, 2026</h3>
+      <p>The AI product management market is consolidating around a clear winner narrative, and ProductPlan's repositioning as a Product Intelligence Platform is well-timed. All three major competitors made AI-related moves this week, validating the category direction. The primary risk is speed — ProductPlan must establish category leadership before Atlassian or Monday.com define the conversation. The primary opportunity is the Winware.ai integration story, which no competitor can replicate in the near term.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="overview-card">
+        <h3>🌍 Market Signals</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>AI-native product tooling is now mainstream.</strong> Gartner coverage, LinkedIn hiring data, and three major competitor moves in a single week signal inflection point, not trend.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>Product-led growth segment is underserved.</strong> PLG companies need real-time product intelligence more than anyone — ProductPlan's ICP expansion opportunity.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Cross-functional alignment fatigue is real.</strong> Industry surveys show misalignment between product, engineering, and business is the #1 risk to product org effectiveness.</div>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <h3>⚠️ Strategic Risks</h3>
+        <div class="signal-item">
+          <div class="signal-dot dot-must"></div>
+          <div class="signal-text"><strong>Monday.com's AI Work OS</strong> is a well-resourced competitor entering the space with consolidation messaging. Risk window: 6–12 months before they gain meaningful traction in product-specific accounts.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-important"></div>
+          <div class="signal-text"><strong>SEO channel erosion</strong> continues industrywide as AI overview results reduce click-through. AEO (AI Engine Optimization) strategy needs to accelerate alongside the new website.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot dot-useful"></div>
+          <div class="signal-text"><strong>Category definition gap</strong> — "Product Intelligence Platform" needs owned content and third-party analyst coverage to become a recognized category before competitors co-opt the term.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px;">
+      <h2>Strategic Opportunities</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="next-actions">
+      <h3>📋 Board-Level Talking Points</h3>
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div><strong>Category creation window is open.</strong> "Product Intelligence Platform" is an unclaimed category. Three competitors are validating the direction but none has defined it. First-mover advantage is available now.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div><strong>Winware.ai integration is the moat.</strong> AI synthesis of Gong + CRM + survey data is architecturally difficult to replicate. Competitors are 12–18 months behind on this specific capability.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div><strong>Dual funnel (new logo + retention) is the right play.</strong> Market data confirms existing customers are under-utilizing AI features — expansion revenue within base is near-term, high-probability revenue.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div><strong>LinkedIn-first content strategy is correct.</strong> ICP (Director+ PMs) is heavily concentrated on LinkedIn. Given loss of other social channels, doubling down on LinkedIn is the highest-ROI content investment.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ COMPANY HUB TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-company">
+
+    <div class="section-header">
+      <h2>ProductPlan — Recent LinkedIn Posts</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="auto-note">
+      ⚠️ <div><strong>Auto-populate in progress.</strong> LinkedIn API integration will automatically pull the 3 most recent ProductPlan company posts each Monday. In the meantime, representative recent posts are shown below based on research. Visit <a href="https://www.linkedin.com/company/productplan" target="_blank" style="color: #B7770D;">ProductPlan's LinkedIn page</a> for live content.</div>
+    </div>
+
+    <div class="placeholder-post">
+      <div class="ph-header">
+        <div class="ph-avatar">PP</div>
+        <div>
+          <div class="ph-name">ProductPlan</div>
+          <div class="ph-handle">@productplan · LinkedIn Company Page</div>
+        </div>
+      </div>
+      <div class="ph-content">Introducing the Product Intelligence Platform — built for product teams who want to stop guessing and start shipping what customers actually need. AI-powered insights. Evidence-based priorities. One shared roadmap. This is what modern product management looks like. 🚀 #ProductIntelligence #ProductManagement #AI</div>
+    </div>
+
+    <div class="placeholder-post">
+      <div class="ph-header">
+        <div class="ph-avatar">PP</div>
+        <div>
+          <div class="ph-name">ProductPlan</div>
+          <div class="ph-handle">@productplan · LinkedIn Company Page</div>
+        </div>
+      </div>
+      <div class="ph-content">How do product teams at leading organizations prioritize features? We analyzed data from 1,000+ product orgs and found one consistent differentiator: the best teams use evidence, not opinions. Read the full report → [Link] #Roadmapping #ProductStrategy #DataDriven</div>
+    </div>
+
+    <div class="section-header" style="margin-top:32px;">
+      <h2>CEO Steven Cohn — Recent LinkedIn Posts</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="auto-note">
+      ⚠️ <div><strong>Auto-populate in progress.</strong> Steven Cohn's LinkedIn posts will be automatically fetched each Monday. Visit his <a href="https://www.linkedin.com/in/stevencohn" target="_blank" style="color: #B7770D;">LinkedIn profile</a> for live posts.</div>
+    </div>
+
+    <div class="placeholder-post">
+      <div class="ph-header">
+        <div class="ph-avatar">SC</div>
+        <div>
+          <div class="ph-name">Steven Cohn</div>
+          <div class="ph-handle">CEO, ProductPlan · @stevencohn</div>
+        </div>
+      </div>
+      <div class="ph-content">The product management tools landscape is at an inflection point. The teams that will win in the next 3 years aren't just managing roadmaps — they're building intelligence systems. That's why we built ProductPlan into a Product Intelligence Platform. The best time to make that shift is now. 💡</div>
+    </div>
+
+    <div class="section-header" style="margin-top:32px;">
+      <h2>Upcoming Webinars</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="auto-note">
+      ⚠️ <div><strong>Webinar series launching soon.</strong> Confirmed events will appear here automatically once the webinar calendar is live. Check <a href="https://www.productplan.com/resources" target="_blank" style="color: #B7770D;">productplan.com/resources</a> for the latest schedule.</div>
+    </div>
+
+    <div class="placeholder-post" style="border-left: 4px solid var(--hibiscus);">
+      <div class="ph-content" style="font-size:14px;">
+        <strong>Coming Soon:</strong> ProductPlan Webinar Series — "From Customer Signal to Shipped Feature"<br>
+        <span style="font-size:12px; color:#888; margin-top:6px; display:block;">AI-powered product workflows · Live platform demo · Q&amp;A with product leaders</span>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:32px;">
+      <h2>Thought Leaders to Follow</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="influencer-grid">
+      <div class="influencer-card">
+        <div class="inf-avatar">LR</div>
+        <div class="inf-name">Lenny Rachitsky</div>
+        <div class="inf-handle">@lennyrachitsky</div>
+        <div class="inf-desc">Newsletter + podcast for product, growth &amp; startups. ~750k subscribers.</div>
+      </div>
+      <div class="influencer-card">
+        <div class="inf-avatar">TT</div>
+        <div class="inf-name">Teresa Torres</div>
+        <div class="inf-handle">@ttorres</div>
+        <div class="inf-desc">Author of Continuous Discovery Habits. #1 continuous discovery voice.</div>
+      </div>
+      <div class="influencer-card">
+        <div class="inf-avatar">SD</div>
+        <div class="inf-name">Shreyas Doshi</div>
+        <div class="inf-handle">@shreyas</div>
+        <div class="inf-desc">Ex-Stripe, Twitter, Google. Contrarian PM wisdom with massive reach.</div>
+      </div>
+      <div class="influencer-card">
+        <div class="inf-avatar">MP</div>
+        <div class="inf-name">Melissa Perri</div>
+        <div class="inf-handle">@melissaperri</div>
+        <div class="inf-desc">Author of Escaping the Build Trap. Product strategy &amp; org design.</div>
+      </div>
+      <div class="influencer-card">
+        <div class="inf-avatar">GB</div>
+        <div class="inf-name">Gibson Biddle</div>
+        <div class="inf-handle">@gibsonbiddle</div>
+        <div class="inf-desc">Ex-Netflix CPO. Product strategy, OKRs, roadmapping frameworks.</div>
+      </div>
+      <div class="influencer-card">
+        <div class="inf-avatar">DT</div>
+        <div class="inf-name">Des Traynor</div>
+        <div class="inf-handle">@destraynor</div>
+        <div class="inf-desc">Intercom Co-founder. Product strategy, messaging, customer insight.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ ALL ARTICLES TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-articles">
+
+    <div class="section-header">
+      <h2>All Articles — Week of May 12, 2026</h2>
+      <div class="line"></div>
+    </div>
+
+    <!-- Article 1 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Mind the Product</span>
+            <span class="article-date">May 10, 2026</span>
+            <span class="badge badge-must">Must Act</span>
+            <span class="badge badge-ai">AI</span>
+          </div>
+          <div class="article-title"><a href="https://www.mindtheproduct.com" target="_blank" onclick="event.stopPropagation()">The Rise of the AI Product Manager: How Machine Intelligence Is Reshaping the PM Role</a></div>
+          <div class="article-summary">AI tools are fundamentally changing what product managers do — moving PMs from data gathering to synthesis and strategic interpretation. The article argues that PM skills are evolving toward hypothesis formation, customer empathy, and AI-assisted prioritization.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★★</div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>This validates ProductPlan's entire repositioning thesis. The "AI product manager" narrative is reaching the mainstream PM community — exactly the audience ProductPlan is targeting. This article is a content gift: quote it in LinkedIn posts, webinars, and sales decks.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>LinkedIn thought leadership post: "This is what AI product management actually looks like"</li>
+              <li>Blog: "What the rise of the AI PM means for your product toolstack"</li>
+              <li>Sales: Use in opening narrative for discovery calls — frames the market shift</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">AI product manager</span>
+              <span class="keyword-tag">AI product management</span>
+              <span class="keyword-tag">product intelligence</span>
+              <span class="keyword-tag">PM role evolution</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>ICP relevance:</strong> Direct. Director+ PMs reading this are asking "how does this change what I use?" ProductPlan should be the answer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Product School</span>
+            <span class="article-date">May 9, 2026</span>
+            <span class="badge badge-must">Must Act</span>
+            <span class="badge badge-competitive">Competitor</span>
+          </div>
+          <div class="article-title"><a href="https://productschool.com" target="_blank" onclick="event.stopPropagation()">Monday.com Launches AI Work OS for Product Teams: What PMs Need to Know</a></div>
+          <div class="article-summary">Monday.com's new AI Work OS introduces purpose-built product management workflows including AI-assisted roadmapping, sprint planning, and stakeholder alignment — directly targeting the product team persona that has historically been ProductPlan's core ICP.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★★</div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>Monday.com is a well-capitalized competitor making a direct play into ProductPlan's category. Their consolidation pitch ("why use a separate tool?") will resonate with budget-constrained buyers. Sales needs an immediate counter-narrative and updated battlecard.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>Sales: Update battlecard immediately with "Their Move" section</li>
+              <li>Blog: "Is Monday.com a Product Roadmap Tool? Here's What Real Product Intelligence Requires"</li>
+              <li>Executive: Competitive signal for board awareness</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">Monday.com product management</span>
+              <span class="keyword-tag">AI Work OS</span>
+              <span class="keyword-tag">project management vs product management</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Competitor relevance:</strong> Critical. This is a direct competitive move. Monitor Monday's product team marketing for messaging shifts over the next 30 days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Pragmatic Institute</span>
+            <span class="article-date">May 8, 2026</span>
+            <span class="badge badge-important">Important</span>
+            <span class="badge badge-trend">Trend</span>
+          </div>
+          <div class="article-title"><a href="https://www.pragmaticinstitute.com" target="_blank" onclick="event.stopPropagation()">Continuous Discovery in the Age of AI: Moving Beyond Quarterly Customer Research</a></div>
+          <div class="article-summary">Pragmatic Institute's annual State of Product Management report highlights that only 23% of product teams practice genuine continuous discovery — despite it being the most-cited factor for high-performing product organizations. AI tooling is identified as the primary enabler to scale continuous discovery.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>This survey data is usable in sales (23% statistic is a powerful opener), marketing (blog/LinkedIn content), and product positioning. The continuous discovery narrative directly maps to ProductPlan's User Research and Customer Insights modules.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>LinkedIn: "Only 23% of product teams do continuous discovery. Here's why that's about to change."</li>
+              <li>Blog: "How AI Makes Continuous Discovery Possible for Every Product Team"</li>
+              <li>Sales: Use the 23% statistic to open discovery calls</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">continuous discovery</span>
+              <span class="keyword-tag">customer research AI</span>
+              <span class="keyword-tag">product intelligence</span>
+              <span class="keyword-tag">user research automation</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>ICP &amp; market relevance:</strong> High. This validates a core ProductPlan value prop and provides third-party data to support the messaging.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Atlassian Blog</span>
+            <span class="article-date">May 7, 2026</span>
+            <span class="badge badge-must">Must Act</span>
+            <span class="badge badge-competitive">Competitor</span>
+          </div>
+          <div class="article-title"><a href="https://www.atlassian.com/blog" target="_blank" onclick="event.stopPropagation()">Atlassian Intelligence Now Powers Backlog Prioritization in Jira — What's New in May 2026</a></div>
+          <div class="article-summary">Atlassian's latest product update brings AI-driven prioritization suggestions directly into Jira's backlog view, automatically surfacing issues based on customer impact scores, business value, and team velocity. The feature is rolling out to Jira Premium and Enterprise plans.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★★</div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>Atlassian is ProductPlan's biggest competitor AND integration partner. This move narrows the feature gap on basic prioritization. However, Atlassian's AI only understands what's in Jira — it lacks the external customer intelligence layer that ProductPlan uniquely provides via Winware.ai.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>Sales battlecard: Update "Atlassian Intelligence" section with this specific capability</li>
+              <li>Blog: "Atlassian Intelligence vs. ProductPlan: Why Internal Data Isn't Enough"</li>
+              <li>LinkedIn: Take a direct but respectful stance on the distinction</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">Atlassian Intelligence</span>
+              <span class="keyword-tag">Jira AI prioritization</span>
+              <span class="keyword-tag">product roadmap Jira</span>
+              <span class="keyword-tag">Jira vs ProductPlan</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Competitor relevance:</strong> Critical. Monitor how sales team is fielding objections from Jira Premium customers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Reforge</span>
+            <span class="article-date">May 8, 2026</span>
+            <span class="badge badge-important">Important</span>
+            <span class="badge badge-ai">AI</span>
+          </div>
+          <div class="article-title"><a href="https://www.reforge.com/blog" target="_blank" onclick="event.stopPropagation()">Voice of Customer 2.0: How AI Is Automating the Signal-to-Insight Pipeline</a></div>
+          <div class="article-summary">Reforge's latest analysis covers the emerging category of AI-powered customer intelligence — tools that automatically synthesize sales calls, support tickets, and user interviews into prioritized product themes. The piece identifies this as the fastest-growing investment area in product tooling.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>Reforge is one of the most influential voices in product — this audience is ProductPlan's ICP. The "signal-to-insight pipeline" framing is nearly identical to the Winware.ai capability description. This article should be cited in ProductPlan content as third-party validation.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>LinkedIn: Share with commentary — "This is exactly what we built with ProductPlan's AI"</li>
+              <li>Blog: Use Reforge data to support the Product Intelligence Platform category narrative</li>
+              <li>Outreach: Reference in cold outreach to Reforge community members</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">voice of customer AI</span>
+              <span class="keyword-tag">customer intelligence platform</span>
+              <span class="keyword-tag">signal synthesis</span>
+              <span class="keyword-tag">product insights automation</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>ICP &amp; product relevance:</strong> Very high. Reforge audience = ProductPlan's exact buyer. This validates the Winware.ai feature investment publicly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 6 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Product Coalition</span>
+            <span class="article-date">May 7, 2026</span>
+            <span class="badge badge-important">Important</span>
+          </div>
+          <div class="article-title"><a href="https://productcoalition.com" target="_blank" onclick="event.stopPropagation()">Cross-Functional Misalignment Is the Hidden Tax on Product Velocity — Here's How Top Teams Fix It</a></div>
+          <div class="article-summary">A survey of 400 product managers revealed that 67% spend more than 5 hours per week on roadmap communication and stakeholder alignment activities — time that could be spent on discovery and strategy. Single-source-of-truth roadmap tooling is identified as the primary remedy.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>The "5 hours per week" data point is a powerful sales tool — it quantifies the pain that ProductPlan's shared roadmap directly solves. This is a mid-funnel content opportunity: speak to the PM who is exhausted from alignment overhead.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>LinkedIn: "PMs spend 5 hours/week on alignment. That's 260 hours/year not spent on discovery."</li>
+              <li>Sales email: Use as attention-grabbing stat in cold outreach subject line</li>
+              <li>Blog: Frame around reclaiming strategic time with better tooling</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">cross-functional alignment</span>
+              <span class="keyword-tag">roadmap communication</span>
+              <span class="keyword-tag">product velocity</span>
+              <span class="keyword-tag">stakeholder management</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>ICP pain point:</strong> Direct. "Disjointed prioritization" is listed as #1 ProductPlan ICP pain point — this article quantifies it with credible data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 7 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">SVPG Blog</span>
+            <span class="article-date">May 6, 2026</span>
+            <span class="badge badge-important">Important</span>
+            <span class="badge badge-trend">Thought Leadership</span>
+          </div>
+          <div class="article-title"><a href="https://www.svpg.com/articles/" target="_blank" onclick="event.stopPropagation()">Marty Cagan: The Problem with Feature Factories in the Age of AI</a></div>
+          <div class="article-summary">Silicon Valley Product Group's Marty Cagan argues that AI is accelerating the divergence between outcome-focused product teams and feature factories — teams that ship features without measurable customer impact. The piece argues AI amplifies both good and bad product habits.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>Cagan is the most respected voice in product strategy. His "feature factory" concept is universally known in ProductPlan's ICP. Connecting ProductPlan to the "outcome-focused" side of this distinction is a powerful positioning move — especially given the rebrand to Product Intelligence Platform.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>LinkedIn: React to Cagan's argument, position ProductPlan as the antidote to feature factory behavior</li>
+              <li>Blog: "Are You a Feature Factory? 5 Signals — and How AI Can Break the Cycle"</li>
+              <li>Webinar: "From Feature Factory to Product Intelligence: A Modern PM Playbook"</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">feature factory</span>
+              <span class="keyword-tag">outcome-driven product management</span>
+              <span class="keyword-tag">product strategy</span>
+              <span class="keyword-tag">Marty Cagan SVPG</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Thought leadership:</strong> Very high. Piggyback on Cagan's authority while inserting ProductPlan into the narrative naturally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 8 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Product Marketing Hive</span>
+            <span class="article-date">May 9, 2026</span>
+            <span class="badge badge-useful">Useful Signal</span>
+          </div>
+          <div class="article-title"><a href="https://productmarketinghive.com" target="_blank" onclick="event.stopPropagation()">How Product Marketing and Product Management Alignment Drives Revenue — New Research</a></div>
+          <div class="article-summary">Research from 300 B2B SaaS companies found that organizations with tight product marketing / product management alignment achieve 2.3x greater ARR growth. Shared roadmap visibility is cited as the #1 enabling factor for this alignment.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★<span class="empty">★★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>The 2.3x ARR figure is a powerful business case for investing in shared roadmap tooling. This expands ProductPlan's buyer narrative beyond individual PMs to include CMOs and revenue leadership who care about cross-functional alignment's impact on growth.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>Sales: Add to business case slide in deck — "2.3x ARR growth when PMM + PM alignment is tight"</li>
+              <li>Executive nurture email: Frame for VPs and CMOs, not just PMs</li>
+              <li>LinkedIn: Broaden appeal beyond PM audience</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">product marketing alignment</span>
+              <span class="keyword-tag">B2B SaaS growth</span>
+              <span class="keyword-tag">revenue alignment</span>
+              <span class="keyword-tag">shared roadmap</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Business case:</strong> Good data point for expanding the ProductPlan buyer narrative to CMO/VPM personas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 9 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Product Led Alliance</span>
+            <span class="article-date">May 8, 2026</span>
+            <span class="badge badge-useful">Useful Signal</span>
+            <span class="badge badge-trend">Emerging</span>
+          </div>
+          <div class="article-title"><a href="https://productledalliance.com" target="_blank" onclick="event.stopPropagation()">Product-Led Growth Meets AI: How PLG Companies Are Using Intelligence to Scale</a></div>
+          <div class="article-summary">A deep dive into how product-led growth companies are applying AI to product intelligence — specifically using behavioral data, in-app signals, and customer conversations to drive expansion revenue and reduce churn. Emerging category: "product-led intelligence."</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★<span class="empty">★★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>PLG companies are an underserved segment for ProductPlan. They have high-volume product signals and real-time data needs — exactly what the ProductPlan intelligence layer can address. This article surfaces a segmentation opportunity worth exploring in GTM planning.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>ICP expansion: Flag for product marketing to evaluate PLG as a new vertical</li>
+              <li>Blog: "Why Product-Led Companies Need Product Intelligence More Than Anyone"</li>
+              <li>LinkedIn: Emerging signal post for product community engagement</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">product-led growth</span>
+              <span class="keyword-tag">PLG intelligence</span>
+              <span class="keyword-tag">product-led intelligence</span>
+              <span class="keyword-tag">expansion revenue</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Market expansion:</strong> Emerging signal. Label as early-stage opportunity, not confirmed trend. Worth monitoring over next 60 days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 10 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Mind the Product</span>
+            <span class="article-date">May 6, 2026</span>
+            <span class="badge badge-useful">Useful Signal</span>
+          </div>
+          <div class="article-title"><a href="https://www.mindtheproduct.com" target="_blank" onclick="event.stopPropagation()">OKR Alignment for Product Teams: Why Strategy and Execution Keep Falling Apart</a></div>
+          <div class="article-summary">Mind the Product's community survey highlights OKR-to-roadmap alignment as a perennial frustration for product leaders — most teams set OKRs quarterly but roadmap decisions happen in a different system with different language, creating a translation gap.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>ProductPlan's portfolio module directly addresses OKR-to-roadmap alignment. This article surfaces a pain point that ProductPlan already solves but may not be actively messaging around. Content opportunity: make OKR alignment a featured use case in marketing.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>Blog: "How to Finally Align Your Product Roadmap to Your OKRs (Without a Spreadsheet)"</li>
+              <li>Sales: Add OKR alignment as explicit use case in discovery questioning</li>
+              <li>LinkedIn: "OKR season is coming. Is your roadmap tool ready to connect strategy to execution?"</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">OKR alignment product</span>
+              <span class="keyword-tag">strategy to execution</span>
+              <span class="keyword-tag">product portfolio OKR</span>
+              <span class="keyword-tag">roadmap OKR</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>Feature-to-content gap:</strong> ProductPlan has this capability but undermarkets it. This article creates the opening to own the OKR alignment narrative.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 11 -->
+    <div class="article-card">
+      <div class="article-header" onclick="toggleArticle(this)">
+        <div class="article-meta-col">
+          <div class="article-top-row">
+            <span class="article-source">Product Side</span>
+            <span class="article-date">May 7, 2026</span>
+            <span class="badge badge-useful">Useful Signal</span>
+          </div>
+          <div class="article-title"><a href="https://productside.com" target="_blank" onclick="event.stopPropagation()">Why Product Teams at Mid-Market Companies Are the Fastest Adopters of AI Tooling</a></div>
+          <div class="article-summary">Analysis of product management tool adoption shows that companies between 200–1,000 employees are adopting AI product tools at 2x the rate of enterprise accounts. The driver: mid-market product teams have the autonomy to move fast and the need to do more with smaller teams.</div>
+        </div>
+        <div class="article-rating-col">
+          <div class="stars">★★★★<span class="empty">★</span></div>
+          <button class="expand-btn">See more ▾</button>
+        </div>
+      </div>
+      <div class="article-details">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Why It Matters for ProductPlan</h4>
+            <p>This directly validates ProductPlan's primary ICP segment (200–1,000 employees). The 2x adoption rate means their TAM is the most AI-receptive and fastest-moving cohort in the market. GTM resources should be concentrated here with urgency.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Suggested Use</h4>
+            <ul>
+              <li>Executive: Data point for board deck on TAM and GTM focus</li>
+              <li>Sales: Use in outbound targeting rationale — validate focus on 200-1,000 employee segment</li>
+              <li>Marketing: Segment-specific messaging for mid-market campaigns</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Related Keywords</h4>
+            <div class="keyword-tags">
+              <span class="keyword-tag">mid-market product management</span>
+              <span class="keyword-tag">AI tool adoption</span>
+              <span class="keyword-tag">product team scaling</span>
+              <span class="keyword-tag">B2B SaaS mid-market</span>
+            </div>
+          </div>
+          <div class="detail-block">
+            <h4>Relevance</h4>
+            <p><strong>ICP validation:</strong> Confirms ProductPlan's target segment is the fastest-moving part of the market. Supports aggressive GTM investment in this cohort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ THOUGHT LEADER TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-thought-leader">
+
+    <div class="exec-highlight" style="margin-bottom: 24px;">
+      <h3>Become a Product Intelligence Thought Leader</h3>
+      <p>Use these GPT prompt templates to generate platform-specific posts in minutes. Each prompt is pre-loaded with this week's research context, ProductPlan's positioning, and platform best practices. Copy the prompt, paste it into ChatGPT or Claude, and get a ready-to-post draft tailored to your voice.</p>
+    </div>
+
+    <!-- LinkedIn Prompt -->
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>💼 LinkedIn — Long-Form Thought Leadership</h3>
+      </div>
+      <div class="prompt-card-body">
+        <div class="prompt-instructions">
+          <strong>How to use:</strong> Copy the prompt below → paste into ChatGPT or Claude → add your personal take or a specific experience you've had → post. Best time to post: Tuesday–Thursday, 8–10am or 12–2pm. Target length: 150–300 words with line breaks for scannability.
+        </div>
+        <div class="prompt-box" id="linkedin-prompt">You are a product management thought leader at ProductPlan, an AI-powered Product Intelligence Platform used by 1,000+ global organizations.
+
+Write a LinkedIn post on ONE of these topics based on current industry trends (week of May 12, 2026):
+
+TOPIC OPTIONS (choose the one that resonates most with your personal experience):
+1. AI is reshaping what it means to be a product manager — PMs who use AI for customer synthesis will outperform those who don't
+2. Most product roadmaps are driven by opinions, not customer evidence — and AI can finally fix that
+3. Cross-functional alignment is the hidden tax on product velocity: PMs spend 5+ hours per week on roadmap communication
+
+CONTEXT TO WEAVE IN:
+- Only 23% of product teams practice continuous discovery (Pragmatic Institute, 2026)
+- Mid-market product teams (200–1,000 employees) are adopting AI tools at 2x the rate of enterprise
+- Monday.com and Atlassian are both making AI moves — the product intelligence category is validating fast
+- ProductPlan's core value: AI synthesis of customer conversations → evidence-based roadmap priorities
+
+FORMAT REQUIREMENTS:
+- Hook in the first line (no intro, start bold)
+- Short paragraphs (1–3 sentences max)
+- Personal and direct tone — not corporate
+- One specific, concrete example or data point in the middle
+- End with a genuine question to drive comments
+- No emojis in the body (one optional at the very end)
+- 150–250 words total
+
+Do NOT mention ProductPlan by name unless it feels completely natural. The goal is to build personal authority, not to promote a product.</div>
+        <button class="copy-btn" onclick="copyPrompt('linkedin-prompt', this)">📋 Copy</button>
+        <div class="prompt-tips">
+          <strong>Pro tips:</strong> Add a personal story from your own experience with roadmapping or customer research. Posts that start with "I used to think..." or "Here's what I got wrong about..." consistently outperform generic advice posts. Tag one of the influencers listed in Company Hub if their work inspired your thinking.
+        </div>
+      </div>
+    </div>
+
+    <!-- Reddit Prompt -->
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>🟠 Reddit — r/ProductManagement &amp; r/UXResearch</h3>
+      </div>
+      <div class="prompt-card-body">
+        <div class="prompt-instructions">
+          <strong>How to use:</strong> Copy the prompt → generate a post → review carefully before posting. Reddit communities are highly sensitive to self-promotion. The goal is to contribute genuinely, spark discussion, and build credibility over time. Never link to ProductPlan in your first comment — let the community engage first.
+        </div>
+        <div class="prompt-box" id="reddit-prompt">You are a product manager writing a genuine, community-first Reddit post for r/ProductManagement or r/UXResearch.
+
+Write a Reddit post on ONE of these angles based on current industry trends:
+
+TOPIC OPTIONS:
+1. A discussion question: "How is your team actually using AI in your product workflow? Looking for honest takes, not vendor pitches."
+2. A genuine lesson learned: How you (or your team) shifted from opinion-driven to evidence-driven roadmapping — what worked, what didn't
+3. A controversial take for debate: "Continuous discovery is becoming table stakes — teams that don't build it in will fall behind. Agree/disagree?"
+
+CONTEXT TO REFERENCE NATURALLY (don't cite sources verbatim):
+- AI synthesis tools are emerging that automatically distill customer calls and surveys into product themes
+- Cross-functional alignment overhead is a major complaint in the PM community (quantified as 5+ hours/week)
+- The gap between teams doing continuous discovery and those doing quarterly research cycles is widening
+
+FORMAT REQUIREMENTS:
+- Reddit-native tone: honest, slightly informal, self-aware
+- No corporate language or buzzwords
+- If sharing a "lesson learned" — be specific and vulnerable, not a case study
+- For discussion posts: end with 2–3 genuinely open questions
+- For controversial takes: steel-man the opposing view before making your argument
+- 100–200 words (Reddit prefers digestible posts)
+- Flair suggestion: "Discussion" or "Strategy" depending on the subreddit
+
+IMPORTANT: Do NOT mention any product or vendor names. This is community engagement, not marketing. If someone asks what tools you use in the comments, answer honestly and briefly — but only if directly asked.</div>
+        <button class="copy-btn" onclick="copyPrompt('reddit-prompt', this)">📋 Copy</button>
+        <div class="prompt-tips">
+          <strong>Pro tips:</strong> Post at weekday mornings (9–11am ET) for highest visibility in r/ProductManagement (~200k members). Respond to every comment in the first hour — early engagement signals good to Reddit's algorithm. Build a comment history in these subreddits before posting — lurk and contribute for 2–3 weeks first if you're new.
+        </div>
+      </div>
+    </div>
+
+    <!-- Twitter/X Prompt -->
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>🐦 X / Twitter — Punchy &amp; Direct</h3>
+      </div>
+      <div class="prompt-card-body">
+        <div class="prompt-instructions">
+          <strong>How to use:</strong> Copy the prompt → generate 3–5 tweet options → choose the one that sounds most like you → post or schedule. Use TweetDeck or Buffer to schedule during peak hours (8–10am PT). Consider making this a weekly habit for sustained thought leadership.
+        </div>
+        <div class="prompt-box" id="twitter-prompt">You are a product management practitioner writing punchy, insightful tweets for X/Twitter.
+
+Write 5 tweet options based on this week's product management trends (week of May 12, 2026). Give me a variety of formats.
+
+CURRENT TRENDS TO DRAW FROM:
+- AI reshaping the PM role: synthesis over gathering, strategy over execution
+- Only 23% of product teams do continuous discovery (massive gap = opportunity)
+- Monday.com + Atlassian both making AI plays in product management space
+- Cross-functional alignment costs PMs 5+ hours/week
+- Mid-market product teams are fastest AI adopters
+- "Product Intelligence Platform" emerging as a new category distinct from roadmap tools
+
+FORMAT VARIETY — write one of each:
+1. HOT TAKE (provocative, slightly controversial, <200 chars): Challenge a commonly held PM belief
+2. STAT + INSIGHT (lead with data, add a sharp point): Use the 23% or 5-hour stat
+3. THREAD STARTER (hook tweet for a 3-part thread): Tease a counterintuitive insight
+4. REACTION (respond to the Monday.com or Atlassian AI news): Brief, confident stance
+5. EVERGREEN WISDOM (<140 chars, quotable): Something a PM would screenshot and save
+
+STYLE:
+- Conversational, direct, no corporate language
+- Confident without being arrogant
+- Specific over general — no "AI is changing everything" platitudes
+- Use the @handles of relevant influencers where appropriate: @lennyrachitsky, @ttorres, @shreyas, @melissaperri
+- Hashtags: max 1–2, only if they add reach (#ProductManagement #ProdMgmt)
+
+Do NOT mention ProductPlan by name. Build the person, not the brand.</div>
+        <button class="copy-btn" onclick="copyPrompt('twitter-prompt', this)">📋 Copy</button>
+        <div class="prompt-tips">
+          <strong>Pro tips:</strong> Reply to @lennyrachitsky, @ttorres, and @shreyas posts before posting your own — being in their reply threads dramatically increases visibility with ProductPlan's ICP. Avoid linking out in tweets (links suppress reach on X). Save links for the first reply instead. Post 3–5x per week for consistent presence.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 32px;">
+      <h2>This Week's Trending Hashtags &amp; Conversations</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="overview-card">
+      <div style="margin-bottom: 14px;">
+        <div style="font-size: 13px; color: #555; margin-bottom: 10px;">Jump into these active conversations this week:</div>
+        <div class="keyword-tags">
+          <span class="keyword-tag">#AIProductManagement</span>
+          <span class="keyword-tag">#ProductIntelligence</span>
+          <span class="keyword-tag">#ContinuousDiscovery</span>
+          <span class="keyword-tag">#ProdMgmt</span>
+          <span class="keyword-tag">#ProductManagement</span>
+          <span class="keyword-tag">#ProductStrategy</span>
+          <span class="keyword-tag">#VoiceOfCustomer</span>
+          <span class="keyword-tag">#ProductRoadmap</span>
+          <span class="keyword-tag">#PLG</span>
+          <span class="keyword-tag">#ProductLedGrowth</span>
+        </div>
+      </div>
+      <div style="font-size: 13px; color: #666; line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--light-gray);">
+        <strong style="color: var(--hibiscus);">Active Reddit threads to join:</strong> Search r/ProductManagement for "AI tools" and "roadmap prioritization" — both have active discussions this week with ProductPlan-relevant context.
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- end .main -->
+
+<!-- FOOTER -->
+<footer>
+  <strong>ProductPlan Market Intelligence Hub</strong> · Research conducted May 12, 2026 · Next run: <strong>May 18, 2026</strong><br>
+  Sources: Mind the Product · Product School · Pragmatic Institute · Reforge · SVPG · Product Coalition · Product Led Alliance · Product Side · Product Marketing Hive · Product Coalition · Atlassian Blog
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // Content sub-tabs (Marketing tab)
+  document.querySelectorAll('.content-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.contentTab;
+      btn.closest('.tab-panel').querySelectorAll('.content-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.closest('.tab-panel').querySelectorAll('.content-tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('content-tab-' + target).classList.add('active');
+    });
+  });
+
+  // Article expand/collapse
+  function toggleArticle(header) {
+    const card = header.closest('.article-card');
+    const details = card.querySelector('.article-details');
+    const btn = card.querySelector('.expand-btn');
+    const isOpen = details.classList.contains('open');
+    details.classList.toggle('open');
+    btn.textContent = isOpen ? 'See more ▾' : 'See less ▴';
+  }
+
+  // Battlecard expand/collapse
+  function toggleBattlecard(header) {
+    const card = header.closest('.battlecard');
+    const body = card.querySelector('.battlecard-body');
+    body.classList.toggle('open');
+  }
+
+  // Compact competitor card expand/collapse
+  function toggleCompact(header) {
+    const card = header.closest('.compact-competitor');
+    const body = card.querySelector('.cc-body');
+    const toggle = card.querySelector('.cc-toggle');
+    body.classList.toggle('open');
+    toggle.classList.toggle('open');
+  }
+
+  // Copy prompt
+  function copyPrompt(id, btn) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
