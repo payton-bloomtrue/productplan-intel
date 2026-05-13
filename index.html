@@ -1777,64 +1777,138 @@
   <!-- ═══════════════ COMPANY HUB TAB ═══════════════ -->
   <div class="tab-panel" id="tab-company">
 
+    <div style="background: var(--white); border: 1px solid var(--card-border); border-radius: 10px; padding: 12px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+      <div style="font-size: 13px; color: #555;">🔄 <strong>Live data</strong> — scraped directly from LinkedIn via Claude in Chrome</div>
+      <div style="font-size: 11px; color: #999; font-weight: 600;">Last updated: May 13, 2026</div>
+    </div>
+
+    <!-- PRODUCTPLAN POSTS -->
     <div class="section-header">
       <h2>ProductPlan — Recent LinkedIn Posts</h2>
       <div class="line"></div>
-    </div>
-
-    <div class="auto-note">
-      ⚠️ <div><strong>Auto-populate in progress.</strong> LinkedIn API integration will automatically pull the 3 most recent ProductPlan company posts each Monday. In the meantime, representative recent posts are shown below based on research. Visit <a href="https://www.linkedin.com/company/productplan" target="_blank" style="color: #B7770D;">ProductPlan's LinkedIn page</a> for live content.</div>
+      <a href="https://www.linkedin.com/company/productplan/posts/" target="_blank" style="font-size: 11px; font-weight: 700; color: var(--hibiscus); white-space: nowrap; text-decoration: none;">View all →</a>
     </div>
 
     <div class="placeholder-post">
       <div class="ph-header">
         <div class="ph-avatar">PP</div>
-        <div>
+        <div style="flex:1;">
           <div class="ph-name">ProductPlan</div>
-          <div class="ph-handle">@productplan · LinkedIn Company Page</div>
+          <div class="ph-handle">linkedin.com/company/productplan · 8h ago</div>
         </div>
+        <span class="badge badge-useful" style="align-self:flex-start;">Culture</span>
       </div>
-      <div class="ph-content">Introducing the Product Intelligence Platform — built for product teams who want to stop guessing and start shipping what customers actually need. AI-powered insights. Evidence-based priorities. One shared roadmap. This is what modern product management looks like. 🚀 #ProductIntelligence #ProductManagement #AI</div>
+      <div class="ph-content">Nothing like bringing some of the team together for dinner, drinks, and really good conversation.<br><br>(For the record, we did not eat at Taco Bell. No shade, we love Taco Bell.)<br><br>These are the people building what's next at ProductPlan.</div>
     </div>
 
     <div class="placeholder-post">
       <div class="ph-header">
         <div class="ph-avatar">PP</div>
-        <div>
+        <div style="flex:1;">
           <div class="ph-name">ProductPlan</div>
-          <div class="ph-handle">@productplan · LinkedIn Company Page</div>
+          <div class="ph-handle">linkedin.com/company/productplan · 2d ago</div>
         </div>
+        <span class="badge badge-ai" style="align-self:flex-start;">Product Update</span>
       </div>
-      <div class="ph-content">How do product teams at leading organizations prioritize features? We analyzed data from 1,000+ product orgs and found one consistent differentiator: the best teams use evidence, not opinions. Read the full report → [Link] #Roadmapping #ProductStrategy #DataDriven</div>
+      <div class="ph-content">👀 Two updates landed in the strategic portfolio this week.<br><br>With <strong>Filter by Tag</strong>, every audience gets a portfolio view tailored to them. The board prep deck, the engineering review, the customer-facing version. One source, many cuts.<br><br>The <strong>View-Only Drawer</strong> is the one we think you'll feel right away. Stakeholders click any deliverable and get the full story: status, linked resources, integrations. No more "let me ask the PM."<br><br><a href="https://hubs.li/Q04gtjyP0" target="_blank" style="color: var(--hibiscus);">Take a look at how it works on the blog →</a><br><br><em>#productmanagement #productintelligence #productplanning</em></div>
     </div>
 
+    <!-- STEVEN COHN POSTS -->
     <div class="section-header" style="margin-top:32px;">
-      <h2>CEO Steven Cohn — Recent LinkedIn Posts</h2>
+      <h2>Steven Cohn — CEO LinkedIn Posts</h2>
       <div class="line"></div>
-    </div>
-
-    <div class="auto-note">
-      ⚠️ <div><strong>Auto-populate in progress.</strong> Steven Cohn's LinkedIn posts will be automatically fetched each Monday. Visit his <a href="https://www.linkedin.com/in/stevencohn" target="_blank" style="color: #B7770D;">LinkedIn profile</a> for live posts.</div>
+      <a href="https://www.linkedin.com/in/stevencohn/recent-activity/all/" target="_blank" style="font-size: 11px; font-weight: 700; color: var(--hibiscus); white-space: nowrap; text-decoration: none;">View all →</a>
     </div>
 
     <div class="placeholder-post">
       <div class="ph-header">
         <div class="ph-avatar">SC</div>
-        <div>
+        <div style="flex:1;">
           <div class="ph-name">Steven Cohn</div>
-          <div class="ph-handle">CEO, ProductPlan · @stevencohn</div>
+          <div class="ph-handle">CEO, ProductPlan · 4d ago</div>
         </div>
+        <span class="badge badge-must" style="align-self:flex-start;">Hiring</span>
       </div>
-      <div class="ph-content">The product management tools landscape is at an inflection point. The teams that will win in the next 3 years aren't just managing roadmaps — they're building intelligence systems. That's why we built ProductPlan into a Product Intelligence Platform. The best time to make that shift is now. 💡</div>
+      <div class="ph-content">I am <strong>#hiring a CTO</strong> to partner with me and the team at ProductPlan. We are doing exciting things. Lots of innovation. Please refer anyone whom you think is a great fit.</div>
     </div>
 
+    <div class="placeholder-post">
+      <div class="ph-header">
+        <div class="ph-avatar">SC</div>
+        <div style="flex:1;">
+          <div class="ph-name">Steven Cohn</div>
+          <div class="ph-handle">CEO, ProductPlan · 2w ago</div>
+        </div>
+        <span class="badge badge-important" style="align-self:flex-start;">Event</span>
+      </div>
+      <div class="ph-content">Just landed in Mesa, Arizona for Western Regional Innovation and Technology Alliance Spring 2026 conference.<br><br>Looking forward to three days with public sector IT and product leaders from across the West.<br><br>• Today at 1 PM: Erica Larson and Jamie Daniel from the City of Boise presenting on how their team uses ProductPlan to align cross-functional work.<br>• Monday at 9:45 AM: My keynote, <strong>From Signal to Service</strong>, on the Demo Stage.<br><br>Booth #29 all three days with Gino Smith. Come say hi.</div>
+    </div>
+
+    <!-- COMMUNITY PULSE -->
+    <div class="section-header" style="margin-top:32px;">
+      <h2>Community &amp; Publication Pulse</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="placeholder-post" style="border-left: 3px solid var(--friendly-purple);">
+          <div class="ph-header">
+            <div class="ph-avatar" style="background: #0F0960; font-size:11px;">PLA</div>
+            <div style="flex:1;">
+              <div class="ph-name">Product Led Alliance</div>
+              <div class="ph-handle">linkedin.com/school/product-led-alliance</div>
+            </div>
+          </div>
+          <div class="ph-content" style="font-size:12px;">AI-powered analytics are changing how product teams understand activation drops in real time — no more waiting on the data ticket. Hosting a webinar on June 4 with Contentsquare on AI-powered product analytics. PLG Summit Amsterdam on May 28–29 features 18 speakers on AI-era product leadership.</div>
+        </div>
+
+        <div class="placeholder-post" style="border-left: 3px solid var(--friendly-purple);">
+          <div class="ph-header">
+            <div class="ph-avatar" style="background: #0F0960; font-size:11px;">MtP</div>
+            <div style="flex:1;">
+              <div class="ph-name">Mind the Product</div>
+              <div class="ph-handle">linkedin.com/company/mind-the-product</div>
+            </div>
+          </div>
+          <div class="ph-content" style="font-size:12px;">World Product Day is May 20 — collecting community stories about resilience, pivots, and breakthroughs in product. High engagement opportunity for ProductPlan's team to participate and build brand presence in the community.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="placeholder-post" style="border-left: 3px solid var(--friendly-purple);">
+          <div class="ph-header">
+            <div class="ph-avatar" style="background: #0F0960; font-size:11px;">PS</div>
+            <div style="flex:1;">
+              <div class="ph-name">Product School</div>
+              <div class="ph-handle">linkedin.com/school/product-school</div>
+            </div>
+          </div>
+          <div class="ph-content" style="font-size:12px;">Just launched <strong>Product Partners</strong> — an organizational capability layer on top of their 2M-member individual training platform. ProductCon New York is 8 days away with Anthropic's Head of Design for Claude Code speaking. High-profile thought leadership moment for AI-native product tools.</div>
+        </div>
+
+        <div class="placeholder-post" style="border-left: 3px solid #C0392B;">
+          <div class="ph-header">
+            <div class="ph-avatar" style="background: #1B3D6E; font-size:11px;">PB</div>
+            <div style="flex:1;">
+              <div class="ph-name">Productboard</div>
+              <div class="ph-handle">Competitor Signal · linkedin.com/company/productboard</div>
+            </div>
+            <span class="badge badge-competitive" style="align-self:flex-start; font-size:10px;">Competitor</span>
+          </div>
+          <div class="ph-content" style="font-size:12px;">"Every organization now has access to AI tools. The real differentiator is clarity — knowing what to build, for whom, and why." Positioning Productboard Spark as the AI-era product intelligence layer. Also published internally on their "Product Value Leaderboard" to hold themselves accountable for shipping customer value, not features. <strong>Watch their messaging closely — they're using language very close to ProductPlan's positioning.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBINARS -->
     <div class="section-header" style="margin-top:32px;">
       <h2>Upcoming Webinars</h2>
       <div class="line"></div>
     </div>
 
     <div class="auto-note">
-      ⚠️ <div><strong>Webinar series launching soon.</strong> Confirmed events will appear here automatically once the webinar calendar is live. Check <a href="https://www.productplan.com/resources" target="_blank" style="color: #B7770D;">productplan.com/resources</a> for the latest schedule.</div>
+      ℹ️ <div>Check <a href="https://www.productplan.com/resources" target="_blank" style="color: #B7770D;">productplan.com/resources</a> for confirmed events. The weekly research task will populate confirmed webinars here automatically once the calendar is live.</div>
     </div>
 
     <div class="placeholder-post" style="border-left: 4px solid var(--hibiscus);">
@@ -1844,6 +1918,7 @@
       </div>
     </div>
 
+    <!-- INFLUENCERS -->
     <div class="section-header" style="margin-top:32px;">
       <h2>Thought Leaders to Follow</h2>
       <div class="line"></div>
