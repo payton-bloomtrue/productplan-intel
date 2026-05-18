@@ -164,14 +164,10 @@
   }
 
   /* ── MAIN CONTENT ── */
-  .main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 28px 32px 60px;
-  }
+  
 
   .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+  .tab-panel.active { display: block; max-width: 1200px; margin: 0 auto; padding: 28px 32px 60px; box-sizing: border-box; }
 
   /* ── SECTION HEADERS ── */
   .section-header {
@@ -986,7 +982,6 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="main">
 
   <!-- ═══════════════ OVERVIEW TAB ═══════════════ -->
   <div class="tab-panel active" id="tab-overview">
@@ -1073,7 +1068,6 @@
       </div>
     </div>
 
-  </div>
 
   <!-- ═══════════════ MARKETING TAB ═══════════════ -->
   <!-- ═══════════════ MARKETING TAB ═══════════════ -->
