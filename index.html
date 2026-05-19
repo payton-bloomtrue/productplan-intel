@@ -166,8 +166,13 @@
   /* ── MAIN CONTENT ── */
   
 
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 32px 60px;
+  }
   .tab-panel { display: none; }
-  .tab-panel.active { display: block; max-width: 1200px; margin: 0 auto; padding: 28px 32px 60px; box-sizing: border-box; }
+  .tab-panel.active { display: block; }
 
   /* ── SECTION HEADERS ── */
   .section-header {
@@ -982,6 +987,8 @@
 </div>
 
 <!-- MAIN CONTENT -->
+
+<div class="main">
 
   <!-- ═══════════════ OVERVIEW TAB ═══════════════ -->
   <div class="tab-panel active" id="tab-overview">
@@ -3172,5 +3179,7 @@ Do NOT mention ProductPlan by name. Build the person, not the brand.</div>
 
   </div>
 
+
+</div><!-- /.main -->
 </body>
 </html>
