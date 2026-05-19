@@ -1075,6 +1075,7 @@
       </div>
     </div>
 
+  </div>
 
   <!-- ═══════════════ MARKETING TAB ═══════════════ -->
   <!-- ═══════════════ MARKETING TAB ═══════════════ -->
@@ -2909,72 +2910,7 @@ Do NOT mention ProductPlan by name. Build the person, not the brand.</div>
 
   </div>
 
-</div><!-- end .main -->
 
-<!-- FOOTER -->
-<footer>
-  <strong>ProductPlan Market Intelligence Hub</strong> · Research conducted May 12, 2026 · Next run: <strong>May 25, 2026</strong><br>
-  Sources: Mind the Product · Productside · Atlassian Blog · monday.com IR · Productboard · BuildBetter.ai · Product School · Pragmatic Institute · Product Coalition · Product Led Alliance
-</footer>
-
-<script>
-  // Tab switching
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('tab-' + target).classList.add('active');
-    });
-  });
-
-  // Content sub-tabs (Marketing tab)
-  document.querySelectorAll('.content-tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.contentTab;
-      btn.closest('.tab-panel').querySelectorAll('.content-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.closest('.tab-panel').querySelectorAll('.content-tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('content-tab-' + target).classList.add('active');
-    });
-  });
-
-  // Article expand/collapse
-  function toggleArticle(header) {
-    const card = header.closest('.article-card');
-    const details = card.querySelector('.article-details');
-    const btn = card.querySelector('.expand-btn');
-    const isOpen = details.classList.contains('open');
-    details.classList.toggle('open');
-    btn.textContent = isOpen ? 'See more ▾' : 'See less ▴';
-  }
-
-  // Battlecard expand/collapse
-  function toggleBattlecard(header) {
-    const card = header.closest('.battlecard');
-    const body = card.querySelector('.battlecard-body');
-    body.classList.toggle('open');
-  }
-
-  // Compact competitor card expand/collapse
-  function toggleCompact(header) {
-    const card = header.closest('.compact-competitor');
-    const body = card.querySelector('.cc-body');
-    const toggle = card.querySelector('.cc-toggle');
-    body.classList.toggle('open');
-    toggle.classList.toggle('open');
-  }
-
-  // Copy prompt
-  function copyPrompt(id, btn) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✅ Copied!';
-      setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
-    });
-  }
-</script>
 
   <!-- ═══════════════ VERTICALS TAB ═══════════════ -->
   <div class="tab-panel" id="tab-verticals">
@@ -3181,5 +3117,71 @@ Do NOT mention ProductPlan by name. Build the person, not the brand.</div>
 
 
 </div><!-- /.main -->
+
+<!-- FOOTER -->
+<footer>
+  <strong>ProductPlan Market Intelligence Hub</strong> · Research conducted May 12, 2026 · Next run: <strong>May 25, 2026</strong><br>
+  Sources: Mind the Product · Productside · Atlassian Blog · monday.com IR · Productboard · BuildBetter.ai · Product School · Pragmatic Institute · Product Coalition · Product Led Alliance
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // Content sub-tabs (Marketing tab)
+  document.querySelectorAll('.content-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.contentTab;
+      btn.closest('.tab-panel').querySelectorAll('.content-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.closest('.tab-panel').querySelectorAll('.content-tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('content-tab-' + target).classList.add('active');
+    });
+  });
+
+  // Article expand/collapse
+  function toggleArticle(header) {
+    const card = header.closest('.article-card');
+    const details = card.querySelector('.article-details');
+    const btn = card.querySelector('.expand-btn');
+    const isOpen = details.classList.contains('open');
+    details.classList.toggle('open');
+    btn.textContent = isOpen ? 'See more ▾' : 'See less ▴';
+  }
+
+  // Battlecard expand/collapse
+  function toggleBattlecard(header) {
+    const card = header.closest('.battlecard');
+    const body = card.querySelector('.battlecard-body');
+    body.classList.toggle('open');
+  }
+
+  // Compact competitor card expand/collapse
+  function toggleCompact(header) {
+    const card = header.closest('.compact-competitor');
+    const body = card.querySelector('.cc-body');
+    const toggle = card.querySelector('.cc-toggle');
+    body.classList.toggle('open');
+    toggle.classList.toggle('open');
+  }
+
+  // Copy prompt
+  function copyPrompt(id, btn) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
+    });
+  }
+</script>
+
 </body>
 </html>
