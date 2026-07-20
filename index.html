@@ -215,6 +215,10 @@
   .badge-useful { background: #E9F7EF; color: var(--useful); border: 1px solid #A9DFBF; }
   .badge-competitive { background: #EAF0FB; color: #1A5276; border: 1px solid #AEC6EF; }
   .badge-ai { background: #F3E8FF; color: #6B21A8; border: 1px solid #D8B4FE; }
+  .badge-partner { background: #E9F7EF; color: #27AE60; border: 1px solid #A9DFBF; }
+  .badge-engage { background: #F3E8FF; color: #6B21A8; border: 1px solid #D8B4FE; }
+  .badge-cite { background: #EAF0FB; color: #1A5276; border: 1px solid #AEC6EF; }
+  .badge-monitor { background: #F4F2F4; color: #777; border: 1px solid var(--card-border); }
   .badge-trend { background: #FFF8E1; color: #B7770D; border: 1px solid #FFD97D; }
 
   /* ── STAR RATING ── */
@@ -605,53 +609,164 @@
     margin-bottom: 14px;
   }
 
-  .influencer-grid {
+  /* ── INDUSTRY VOICES TAB ── */
+  .iv-bar {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .iv-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+
+  .iv-chip {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    background: var(--white);
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .iv-chip:hover { border-color: var(--hibiscus); color: var(--hibiscus); }
+  .iv-chip.active { background: var(--hibiscus); border-color: var(--hibiscus); color: #fff; }
+  .iv-chip.iv-tier.active { background: var(--late-sky); border-color: var(--late-sky); }
+  .iv-chip .iv-n { opacity: 0.55; margin-left: 4px; }
+
+  .iv-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
   }
 
-  .influencer-card {
+  .iv-card {
     background: var(--white);
     border: 1px solid var(--card-border);
     border-radius: 10px;
     padding: 16px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
   }
+  .iv-card.iv-hidden { display: none; }
 
-  .influencer-card .inf-avatar {
-    width: 46px;
-    height: 46px;
+  .iv-head { display: flex; gap: 10px; margin-bottom: 10px; }
+
+  .iv-av {
+    flex: none;
+    width: 38px;
+    height: 38px;
     background: var(--gradient-135);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #fff;
     font-weight: 700;
-    font-size: 16px;
-    margin: 0 auto 10px;
-  }
-
-  .influencer-card .inf-name {
     font-size: 13px;
-    font-weight: 700;
-    color: var(--asphalt);
-    margin-bottom: 3px;
+  }
+  .iv-av.iv-co { border-radius: 8px; }
+
+  .iv-name { font-weight: 700; font-size: 13.5px; color: var(--asphalt); line-height: 1.3; }
+  .iv-role { font-size: 11px; color: #888; line-height: 1.45; margin-top: 3px; }
+  .iv-org { color: var(--hibiscus); font-weight: 700; }
+
+  .iv-known { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 9px; }
+
+  .iv-flag {
+    background: #FFF8E1;
+    border: 1px solid #FFD97D;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 10px;
+    color: #7D5A0A;
+    line-height: 1.45;
+    margin-bottom: 9px;
   }
 
-  .influencer-card .inf-handle {
-    font-size: 11px;
-    color: var(--hibiscus);
+  .iv-tag {
+    display: inline-block;
+    font-size: 10px;
     font-weight: 600;
-    margin-bottom: 6px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #F7F3F6;
+    color: var(--hibiscus);
+    border: 1px solid #EADCE6;
+    margin: 0 3px 3px 0;
   }
 
-  .influencer-card .inf-desc {
-    font-size: 11px;
-    color: #666;
-    line-height: 1.5;
+  .iv-bio {
+    display: none;
+    font-size: 11.5px;
+    color: #555;
+    line-height: 1.65;
+    border-top: 1px solid var(--card-border);
+    margin-top: 10px;
+    padding-top: 10px;
   }
+  .iv-bio.open { display: block; }
+
+  .iv-foot {
+    display: flex;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 11px;
+  }
+  .iv-foot { border-top: 1px solid var(--card-border); }
+
+  .iv-more {
+    flex: 1;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+    background: var(--white);
+    color: #666;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .iv-more:hover { border-color: var(--hibiscus); color: var(--hibiscus); }
+
+  .iv-li {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #0A66C2;
+    background: #0A66C2;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.15s ease;
+  }
+  .iv-li:hover { opacity: 0.85; }
+
+  .iv-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 13px;
+  }
+
+  @media (max-width: 1100px) { .iv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 700px)  { .iv-grid { grid-template-columns: 1fr; } }
 
   /* ── THOUGHT LEADER TAB ── */
   .prompt-card {
@@ -968,8 +1083,8 @@
     <div class="stat-label">Must-Act Signals</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">6</div>
-    <div class="stat-label">Top Influencers</div>
+    <div class="stat-number">23</div>
+    <div class="stat-label">Industry Voices</div>
   </div>
 </div>
 
@@ -981,6 +1096,7 @@
   <button class="tab-btn" data-tab="executive">📊 Executive</button>
   <button class="tab-btn" data-tab="company">🏢 Company Hub</button>
   <button class="tab-btn" data-tab="articles">📰 All Articles</button>
+  <button class="tab-btn" data-tab="voices">🗣️ Industry Voices</button>
   <button class="tab-btn" data-tab="thought-leader">✍️ Thought Leader</button>
   <button class="tab-btn" data-tab="verticals">🌐 Verticals</button>
 </div>
@@ -1558,6 +1674,465 @@
   </div>
 
 
+  <!-- ═══════════════ INDUSTRY VOICES TAB ═══════════════ -->
+  <div class="tab-panel" id="tab-voices">
+
+    <div class="iv-bar">
+      <div>&#128483;&#65039; <strong>Industry Voices</strong> &mdash; <span id="iv-count">23</span> of 23 tracked across 12 focus areas</div>
+      <div style="font-size:11px;color:#999;font-weight:600;">Roles &amp; handles verified July 20, 2026</div>
+    </div>
+
+    <div class="section-header"><h2>Focus Area</h2><div class="line"></div></div>
+    <div class="iv-chips">
+    <button class="iv-chip" data-kind="focus" data-val="AI frontier">AI frontier<span class="iv-n">5</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Community">Community<span class="iv-n">1</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Discovery and research">Discovery and research<span class="iv-n">4</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Growth and PLG">Growth and PLG<span class="iv-n">5</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Prioritization">Prioritization<span class="iv-n">3</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product design">Product design<span class="iv-n">3</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product development">Product development<span class="iv-n">4</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product leadership">Product leadership<span class="iv-n">9</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product management">Product management<span class="iv-n">9</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product ops">Product ops<span class="iv-n">4</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Product strategy">Product strategy<span class="iv-n">11</span></button>
+    <button class="iv-chip" data-kind="focus" data-val="Roadmapping">Roadmapping<span class="iv-n">3</span></button>
+    </div>
+
+    <div class="section-header"><h2>Engagement Tier</h2><div class="line"></div></div>
+    <div class="iv-chips">
+    <button class="iv-chip iv-tier" data-kind="tier" data-val="partner">Partner<span class="iv-n">2</span></button>
+    <button class="iv-chip iv-tier" data-kind="tier" data-val="engage">Engage<span class="iv-n">11</span></button>
+    <button class="iv-chip iv-tier" data-kind="tier" data-val="cite">Cite<span class="iv-n">3</span></button>
+    <button class="iv-chip iv-tier" data-kind="tier" data-val="monitor">Monitor<span class="iv-n">7</span></button>
+      <button class="iv-chip" data-kind="clear" data-val="clear" style="color:var(--late-sky);">Clear all</button>
+    </div>
+    <div style="font-size:11px;color:#888;margin:-8px 0 18px;">
+      <strong>Partner</strong> active relationship &middot; <strong>Engage</strong> tag, reply, pitch &middot;
+      <strong>Cite</strong> use their frameworks &middot; <strong>Monitor</strong> track for signal.
+      Filters combine: any selected focus area, and any selected tier.
+    </div>
+
+    <div class="section-header"><h2>Voices</h2><div class="line"></div></div>
+    <div class="iv-grid" id="iv-grid">
+      <div class="iv-card" data-tier="cite" data-cats="Product leadership|Product development|Product strategy">
+        <div class="iv-head">
+          <div class="iv-av">MC</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Marty Cagan</div>
+            <div class="iv-role">Founder &amp; Partner<br><span class="iv-org">Silicon Valley Product Group</span></div>
+          </div>
+        </div>
+        <span class="badge badge-cite iv-badge" style="align-self:flex-start;margin-bottom:9px;">Cite</span>
+        
+        <div class="iv-known">Empowered teams vs. feature teams</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product leadership</span><span class="iv-tag">Product development</span><span class="iv-tag">Product strategy</span></div>
+        <div class="iv-bio">The most-cited authority in product management, author of Inspired, Empowered and Transformed. Writes about the product operating model and why feature teams fail to produce outcomes. Cite him rather than tag him &mdash; his frameworks give ProductPlan credible language for the evidence-over-output argument, but he rarely engages with vendors.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/cagan" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Discovery and research|Product management|Prioritization">
+        <div class="iv-head">
+          <div class="iv-av">TT</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Teresa Torres</div>
+            <div class="iv-role">Founder &amp; Discovery Coach<br><span class="iv-org">Product Talk</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Continuous discovery</div>
+        <div class="iv-tags-row"><span class="iv-tag">Discovery and research</span><span class="iv-tag">Product management</span><span class="iv-tag">Prioritization</span></div>
+        <div class="iv-bio">Author of Continuous Discovery Habits and the person who made weekly customer interviewing a mainstream practice. Reportedly spending much of 2026 building AI discovery tooling of her own. The closest philosophical match to Winware on this list &mdash; her audience already accepts that synthesis is the bottleneck, which makes them a warm audience for ProductPlan.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/teresatorres" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Prioritization|Product strategy|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">SD</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Shreyas Doshi</div>
+            <div class="iv-role">Founder &amp; Startup Advisor<br><span class="iv-org">High Leverage Labs</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Product judgment, prioritization</div>
+        <div class="iv-tags-row"><span class="iv-tag">Prioritization</span><span class="iv-tag">Product strategy</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Ex-Stripe, Twitter, Google and Yahoo product leader, now advising startups independently. Writes about product judgment, prioritization and the difference between execution and taste. His judgment-over-tooling thesis lines up directly with the context-layer argument &mdash; a strong reply and quote-post target.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/shreyasdoshi" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Product management|Growth and PLG|AI frontier">
+        <div class="iv-head">
+          <div class="iv-av">LR</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Lenny Rachitsky</div>
+            <div class="iv-role">Founder &amp; Host<br><span class="iv-org">Lenny&rsquo;s Newsletter &amp; Podcast</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        
+        <div class="iv-known">PM career, growth, AI workflows</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product management</span><span class="iv-tag">Growth and PLG</span><span class="iv-tag">AI frontier</span></div>
+        <div class="iv-bio">Runs the largest product newsletter and podcast in the category, past a million subscribers as of January 2026. Covers PM career, growth tactics and increasingly AI workflows. Reach is enormous but the surface is saturated &mdash; pitch the podcast rather than expecting replies to posts.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/lennyrachitsky" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product leadership|Product strategy|Product ops">
+        <div class="iv-head">
+          <div class="iv-av">MP</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Melissa Perri</div>
+            <div class="iv-role">Founder &amp; CEO<br><span class="iv-org">Produx Labs</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Escaping the Build Trap; judgment over AI</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product leadership</span><span class="iv-tag">Product strategy</span><span class="iv-tag">Product ops</span></div>
+        <div class="iv-bio">Author of Escaping the Build Trap, senior lecturer at Harvard Business School, and co-author of the Product Operations book. Publicly sceptical that AI can replace product judgment. That scepticism is the exact frame ProductPlan wants &mdash; AI that supplies evidence rather than making the call.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/melissajeanperri" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="partner" data-cats="Product development|Discovery and research|Product design">
+        <div class="iv-head">
+          <div class="iv-av">JG</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Jeff Gothelf</div>
+            <div class="iv-role">Co-Founder<br><span class="iv-org">Sense &amp; Respond Learning</span></div>
+          </div>
+        </div>
+        <span class="badge badge-partner iv-badge" style="align-self:flex-start;margin-bottom:9px;">Partner</span>
+        
+        <div class="iv-known">Outcomes over output; Lean UX</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product development</span><span class="iv-tag">Discovery and research</span><span class="iv-tag">Product design</span></div>
+        <div class="iv-bio">Author of Lean UX and Sense &amp; Respond, and an established ProductPlan webinar partner. Argues relentlessly that teams should be measured on outcomes rather than shipped features. The warmest relationship on this list and the obvious first call for co-marketing.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/gothelf" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="partner" data-cats="Product development|Discovery and research|Roadmapping">
+        <div class="iv-head">
+          <div class="iv-av">JS</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Josh Seiden</div>
+            <div class="iv-role">Co-Founder<br><span class="iv-org">Sense &amp; Respond Learning</span></div>
+          </div>
+        </div>
+        <span class="badge badge-partner iv-badge" style="align-self:flex-start;margin-bottom:9px;">Partner</span>
+        
+        <div class="iv-known">Outcomes over output</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product development</span><span class="iv-tag">Discovery and research</span><span class="iv-tag">Roadmapping</span></div>
+        <div class="iv-bio">Co-author of Outcomes Over Output and Sense &amp; Respond with Jeff Gothelf, and also a ProductPlan webinar partner. Focuses on outcome-based roadmaps and how to write goals teams can actually act on. Roadmapping overlap makes him the more product-adjacent of the pair.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/jseiden" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="cite" data-cats="Product strategy|Roadmapping|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">GB</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Gibson Biddle</div>
+            <div class="iv-role">Product Advisor &amp; Speaker<br><span class="iv-org">Independent</span></div>
+          </div>
+        </div>
+        <span class="badge badge-cite iv-badge" style="align-self:flex-start;margin-bottom:9px;">Cite</span>
+        
+        <div class="iv-known">Product strategy, roadmap frameworks</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product strategy</span><span class="iv-tag">Roadmapping</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Former VP Product at Netflix, now an independent advisor, keynote speaker and lecturer at Stanford and INSEAD. Best known for the DHM strategy framework and highly practical roadmap teardowns. His frameworks are unusually citable in roadmapping content.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/gibsonbiddle" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="AI frontier">
+        <div class="iv-head">
+          <div class="iv-av">AK</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Andrej Karpathy</div>
+            <div class="iv-role">Pre-training Researcher<br><span class="iv-org">Anthropic</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        <div class="iv-flag">Impostor profiles circulate &mdash; slug verified</div>
+        <div class="iv-known">Foundational AI voice</div>
+        <div class="iv-tags-row"><span class="iv-tag">AI frontier</span></div>
+        <div class="iv-bio">Founding OpenAI member and former Tesla AI director who founded Eureka Labs, then joined Anthropic in May 2026. Sets the ceiling of the technical AI discourse rather than the product conversation. Pure signal source &mdash; track what he says about agent context and reasoning, but he is not an engagement target.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/andrej-karpathy-9a650716" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="AI frontier|Product strategy|Product design">
+        <div class="iv-head">
+          <div class="iv-av">DT</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Des Traynor</div>
+            <div class="iv-role">Co-founder &amp; Chief Strategy Officer<br><span class="iv-org">Fin (formerly Intercom)</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">AI in B2B SaaS</div>
+        <div class="iv-tags-row"><span class="iv-tag">AI frontier</span><span class="iv-tag">Product strategy</span><span class="iv-tag">Product design</span></div>
+        <div class="iv-bio">Co-founded Intercom, which renamed itself Fin in May 2026 around its AI agent. The most credible operator voice on AI that actually ships in B2B SaaS rather than AI as positioning. Worth engaging because he argues from shipped economics, which lends weight to ProductPlan&rsquo;s evidence framing.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/destraynor" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Growth and PLG|Product strategy">
+        <div class="iv-head">
+          <div class="iv-av">EV</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Elena Verna</div>
+            <div class="iv-role">Head of Growth<br><span class="iv-org">Lovable</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        
+        <div class="iv-known">PLG, retention, monetization</div>
+        <div class="iv-tags-row"><span class="iv-tag">Growth and PLG</span><span class="iv-tag">Product strategy</span></div>
+        <div class="iv-bio">Growth leader with time at Amplitude, Miro and Dropbox, now Head of Growth at Lovable. Writes candidly about PLG, retention and monetisation traps. Adjacent rather than core to ProductPlan&rsquo;s ICP, but useful for expansion and retention content.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/elenaverna" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product management|Prioritization|Growth and PLG">
+        <div class="iv-head">
+          <div class="iv-av">AG</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Aakash Gupta</div>
+            <div class="iv-role">Founder<br><span class="iv-org">Product Growth</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Tactical frameworks, impact modeling</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product management</span><span class="iv-tag">Prioritization</span><span class="iv-tag">Growth and PLG</span></div>
+        <div class="iv-bio">Ex-VP Product at Apollo.io, now full-time on the Product Growth newsletter, podcast and coaching. Publishes highly tactical, saveable frameworks &mdash; impact modelling, prioritisation templates, interview guides. Among the highest engagement-per-post on LinkedIn in this set, which makes him the best amplification bet.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/aagupta" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="cite" data-cats="Product strategy|Roadmapping|Product management">
+        <div class="iv-head">
+          <div class="iv-av">RP</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Roman Pichler</div>
+            <div class="iv-role">Founder &amp; Coach<br><span class="iv-org">Pichler Consulting</span></div>
+          </div>
+        </div>
+        <span class="badge badge-cite iv-badge" style="align-self:flex-start;margin-bottom:9px;">Cite</span>
+        
+        <div class="iv-known">Product strategy, roadmapping</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product strategy</span><span class="iv-tag">Roadmapping</span><span class="iv-tag">Product management</span></div>
+        <div class="iv-bio">Author of Strategize and a long-standing trainer on product strategy and goal-oriented roadmaps. Much of the vocabulary buyers use to describe roadmapping originates with him. Core SEO adjacency &mdash; cite his framing in pillar content.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/romanpichler" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product ops|Product development|Product strategy">
+        <div class="iv-head">
+          <div class="iv-av">JC</div>
+          <div style="min-width:0;">
+            <div class="iv-name">John Cutler</div>
+            <div class="iv-role">Head of Product<br><span class="iv-org">Dotwork</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Systems thinking, product ops</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product ops</span><span class="iv-tag">Product development</span><span class="iv-tag">Product strategy</span></div>
+        <div class="iv-bio">Writes The Beautiful Mess, one of the most respected newsletters on how product organisations actually behave. Focuses on systems thinking, product ops and the gap between stated and real operating models. His systems framing supports the context-layer argument better than anyone else here.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/johnpcutler" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Product design|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">JZ</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Julie Zhuo</div>
+            <div class="iv-role">Co-founder<br><span class="iv-org">Sundial</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        
+        <div class="iv-known">Product leadership, design</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product design</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Former VP Design at Facebook and author of The Making of a Manager, now co-founder of data company Sundial. Writes on design craft and the transition into product leadership. Large reach but lower ICP overlap &mdash; track for narrative shifts rather than active engagement.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/julie-zhuo" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Growth and PLG|Product strategy">
+        <div class="iv-head">
+          <div class="iv-av">BB</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Brian Balfour</div>
+            <div class="iv-role">Chief Growth Officer<br><span class="iv-org">Miro</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        <div class="iv-flag">Reforge acquired by Miro, Mar 2026</div>
+        <div class="iv-known">Growth systems</div>
+        <div class="iv-tags-row"><span class="iv-tag">Growth and PLG</span><span class="iv-tag">Product strategy</span></div>
+        <div class="iv-bio">Founded Reforge and served as its CEO until Miro acquired it in March 2026, when he became Miro&rsquo;s Chief Growth Officer. Known for systems-based thinking on growth loops and market-product fit. Now inside a large work-management vendor, which makes him worth watching for competitive reasons as well as content.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/bbalfour" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product strategy|Growth and PLG|Product management">
+        <div class="iv-head">
+          <div class="iv-av">LT</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Leah Tharin</div>
+            <div class="iv-role">Independent Advisor<br><span class="iv-org">Leah&rsquo;s ProducTea</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">Product strategy realism, anti-bloat</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product strategy</span><span class="iv-tag">Growth and PLG</span><span class="iv-tag">Product management</span></div>
+        <div class="iv-bio">Independent B2B product and growth advisor running the ProducTea newsletter and podcast, with advisory and board seats across European SaaS. Contrarian, allergic to product bloat, and unusually active in her own comment threads. That responsiveness makes her a realistic reply target rather than a broadcast one.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/leahtharin" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="AI frontier|Product management|Discovery and research">
+        <div class="iv-head">
+          <div class="iv-av">PH</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Pawel Huryn</div>
+            <div class="iv-role">Founder &amp; Author<br><span class="iv-org">The Product Compass</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">AI product management</div>
+        <div class="iv-tags-row"><span class="iv-tag">AI frontier</span><span class="iv-tag">Product management</span><span class="iv-tag">Discovery and research</span></div>
+        <div class="iv-bio">Former CPO who now writes The Product Compass, one of the most-followed practical AI-for-PM newsletters. Publishes hands-on workflows, prompts and tooling breakdowns several times a week. High posting cadence and a receptive audience make him one of the more realistic engagement targets on the AI side.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/pawel-huryn" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product leadership|Product management">
+        <div class="iv-head">
+          <div class="iv-av">PW</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Petra Wille</div>
+            <div class="iv-role">Independent Coach<br><span class="iv-org">Self-employed</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">PM coaching, stakeholder management</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product leadership</span><span class="iv-tag">Product management</span></div>
+        <div class="iv-bio">Independent product leadership coach based in Hamburg, author of STRONG Product People and co-organiser of Product at Heart. Focuses on coaching PMs and navigating stakeholder relationships. Stakeholder alignment is a named ICP pain point, which makes her audience a direct fit.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/petra-wille-b8b1329" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Product ops|AI frontier|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">CV</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Claire Vo</div>
+            <div class="iv-role">Founder &amp; CEO<br><span class="iv-org">ChatPRD</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        <div class="iv-flag">LaunchDarkly status ambiguous &mdash; verify before outreach</div>
+        <div class="iv-known">Product ops, scaling, AI-native building</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product ops</span><span class="iv-tag">AI frontier</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Three-time CPO, formerly at LaunchDarkly, now building ChatPRD and co-hosting the How I AI podcast. Increasingly focused on AI-native product building rather than traditional product ops. Worth watching for a shift fully into the AI frontier group.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/clairevo" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product ops|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">DT</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Denise Tilles</div>
+            <div class="iv-role">Founder &amp; Product Ops Consultant<br><span class="iv-org">Grocket</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        <div class="iv-flag">Produx Labs affiliation unconfirmed for 2026</div>
+        <div class="iv-known">Product ops practice</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product ops</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Co-author of Product Operations with Melissa Perri and an independent product ops consultant. Writes about operating models, tooling and how product ops functions get built. Product ops is the function most likely to own a ProductPlan rollout, which makes her audience unusually well-qualified.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/denisetilles" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="engage" data-cats="Product management|Product strategy|Product leadership">
+        <div class="iv-head">
+          <div class="iv-av">RM</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Rich Mironov</div>
+            <div class="iv-role">CEO &amp; Product Coach<br><span class="iv-org">Mironov Consulting</span></div>
+          </div>
+        </div>
+        <span class="badge badge-engage iv-badge" style="align-self:flex-start;margin-bottom:9px;">Engage</span>
+        
+        <div class="iv-known">B2B and enterprise product reality</div>
+        <div class="iv-tags-row"><span class="iv-tag">Product management</span><span class="iv-tag">Product strategy</span><span class="iv-tag">Product leadership</span></div>
+        <div class="iv-bio">Long-time B2B and enterprise product coach who writes bluntly about the gap between product theory and enterprise reality &mdash; sales escalations, roadmap politics, one-off customer commitments. Speaks to the 200 to 1,000 employee ICP more literally than anyone else here. New book Money Stories due 2026.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/in/richmironov" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-card" data-tier="monitor" data-cats="Community|Product management">
+        <div class="iv-head">
+          <div class="iv-av iv-co">Mt</div>
+          <div style="min-width:0;">
+            <div class="iv-name">Mind the Product</div>
+            <div class="iv-role">Community &amp; Events<br><span class="iv-org">Owned by Pendo</span></div>
+          </div>
+        </div>
+        <span class="badge badge-monitor iv-badge" style="align-self:flex-start;margin-bottom:9px;">Monitor</span>
+        <div class="iv-flag">Pendo-owned &mdash; not a neutral channel</div>
+        <div class="iv-known">Community hub, trending conversations</div>
+        <div class="iv-tags-row"><span class="iv-tag">Community</span><span class="iv-tag">Product management</span></div>
+        <div class="iv-bio">The largest product management community, running ProductTank meetups worldwide and the mtpcon conferences, plus a high-volume publication. Excellent early signal on what practitioners are actually discussing. Acquired by Pendo in February 2022 and still Pendo-owned, so treat it as a useful trend source rather than a neutral channel.</div>
+        <div class="iv-foot">
+          <button class="iv-more">Who they are &#9662;</button>
+          <a class="iv-li" href="https://www.linkedin.com/company/mind-the-product" target="_blank" rel="noopener">in &#8599;</a>
+        </div>
+      </div>
+      <div class="iv-empty" id="iv-empty" style="display:none;">No voices match those filters.</div>
+    </div>
+
+  </div>
+
   <div class="tab-panel" id="tab-thought-leader">
 
     <div class="exec-highlight" style="margin-bottom: 24px;">
@@ -1958,6 +2533,55 @@ Do NOT mention ProductPlan by name. Build the person, not the brand.</div>
       setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
     });
   }
+  // Industry Voices — filters + bio expand
+  (function () {
+    var grid = document.getElementById('iv-grid');
+    if (!grid) return;
+    var focus = new Set(), tier = new Set();
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.iv-card'));
+    var countEl = document.getElementById('iv-count');
+    var emptyEl = document.getElementById('iv-empty');
+
+    function apply() {
+      var shown = 0;
+      cards.forEach(function (c) {
+        var cats = c.dataset.cats.split('|');
+        var okF = !focus.size || cats.some(function (x) { return focus.has(x); });
+        var okT = !tier.size || tier.has(c.dataset.tier);
+        var on = okF && okT;
+        c.classList.toggle('iv-hidden', !on);
+        if (on) shown++;
+      });
+      countEl.textContent = shown;
+      emptyEl.style.display = shown ? 'none' : 'block';
+    }
+
+    document.querySelectorAll('#tab-voices .iv-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var k = chip.dataset.kind, v = chip.dataset.val;
+        if (k === 'clear') { focus.clear(); tier.clear(); }
+        else {
+          var s = k === 'focus' ? focus : tier;
+          if (s.has(v)) { s.delete(v); } else { s.add(v); }
+        }
+        document.querySelectorAll('#tab-voices .iv-chip').forEach(function (c) {
+          if (c.dataset.kind === 'clear') return;
+          var set = c.dataset.kind === 'focus' ? focus : tier;
+          c.classList.toggle('active', set.has(c.dataset.val));
+        });
+        apply();
+      });
+    });
+
+    grid.addEventListener('click', function (e) {
+      var btn = e.target.closest('.iv-more');
+      if (!btn) return;
+      var bio = btn.closest('.iv-card').querySelector('.iv-bio');
+      var open = bio.classList.toggle('open');
+      btn.innerHTML = open ? 'Who they are \u25B4' : 'Who they are \u25BE';
+    });
+  })();
+
 </script>
 
 </body>
